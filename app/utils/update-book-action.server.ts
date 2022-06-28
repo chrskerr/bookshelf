@@ -1,12 +1,15 @@
 import type { ActionFunction } from '@remix-run/node';
+
+import { redirect } from '@remix-run/node';
 import { db } from './db.server';
 
 interface UploadBook {
 	id?: string;
 	title?: string;
+	isbn?: string;
 	author?: string;
 	series?: string;
-	purchasedAt?: string;
+	isOwned?: boolean;
 	firstPublishedAt?: string;
 }
 
@@ -17,15 +20,17 @@ export const action: ActionFunction = async ({ request }) => {
 	if (
 		!bookData.author ||
 		!bookData.firstPublishedAt ||
-		!bookData.purchasedAt ||
-		!bookData.title
+		!bookData.isbn ||
+		!bookData.title ||
+		typeof bookData.isOwned !== 'boolean'
 	) {
 		throw new Response('Missing data', { status: 500 });
 	}
 
 	const insertObj: Parameters<typeof db.book.upsert>[0]['create'] = {
 		title: bookData.title,
-		purchasedAt: new Date(bookData.purchasedAt),
+		isbn: bookData.isbn,
+		isOwned: bookData.isOwned,
 		firstPublishedAt: new Date(bookData.firstPublishedAt),
 		...(bookData.series
 			? {
@@ -61,7 +66,5 @@ export const action: ActionFunction = async ({ request }) => {
 		});
 	}
 
-	console.log(bookData, typeof bookData.firstPublishedAt);
-
-	return null;
+	return redirect('/');
 };

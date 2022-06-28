@@ -34,9 +34,10 @@ model Series {
 model Book {
     id    String @id @default(uuid())
     title String
+    isbn  String
 
     firstPublishedAt DateTime
-    purchasedAt      DateTime
+    isOwned          Boolean
 
     series   Series? @relation(fields: [seriesId], references: [id])
     seriesId String?

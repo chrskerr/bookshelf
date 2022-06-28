@@ -11,7 +11,7 @@
 }
 
 button.button {
-	@apply bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer px-3 py-1 rounded-md;
+	@apply bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer px-3 py-1 rounded-md shadow-md;
 }
 
 button.button.destructive {

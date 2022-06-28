@@ -25,6 +25,15 @@ export default function AddEditBook({ book }: IProps) {
 							/>
 						</label>
 						<label>
+							ISBN:
+							<input
+								type="text"
+								name="isbn"
+								value={book?.isbn}
+								required
+							/>
+						</label>
+						<label>
 							Author:
 							<input
 								type="text"
@@ -42,11 +51,11 @@ export default function AddEditBook({ book }: IProps) {
 							/>
 						</label>
 						<label>
-							Date Purchased:
+							Is owned?
 							<input
-								type="date"
-								name="purchasedAt"
-								value={book?.purchasedAt.toISOString()}
+								type="checkbox"
+								name="isOwned"
+								checked={book?.isOwned}
 								required
 							/>
 						</label>

@@ -22,7 +22,8 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 		select: {
 			id: true,
 			title: true,
-			purchasedAt: true,
+			isbn: true,
+			isOwned: true,
 			firstPublishedAt: true,
 			users: {
 				where: { userId },

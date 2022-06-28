@@ -9,7 +9,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 	return new Response(null, {
 		status: 200,
 		headers: {
-			'Set-Cookie': await userIdCookie.serialize(userId),
+			'Set-Cookie': await userIdCookie.serialize(userId ?? ''),
 		},
 	});
 };
