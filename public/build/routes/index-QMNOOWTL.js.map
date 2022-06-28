@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/index.tsx?browser", "../../../app/routes/index.tsx"],
-  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/index.tsx\";", "export default function Index() {\n\treturn (\n\t\t<div className=\"p-8\">\n\t\t\t<header className=\"flex justify-between\">\n\t\t\t\t<h1 className=\"text-3xl text-emerald-500 font-mono font-semibold\">\n\t\t\t\t\tBookshelf\n\t\t\t\t</h1>\n\t\t\t</header>\n\t\t</div>\n\t);\n}\n"],
-  "mappings": ";;;;;;AAAA;;;ACAA;AAAe,iBAAiB;AAC/B,SACC,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACd,oCAAC,UAAD;AAAA,IAAQ,WAAU;AAAA,KACjB,oCAAC,MAAD;AAAA,IAAI,WAAU;AAAA,KAAoD;AAAA;",
-  "names": []
-}

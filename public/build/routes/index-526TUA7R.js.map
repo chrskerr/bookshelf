@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["empty-module:~/loaders/books.server", "browser-route-module:/Users/chris/Projects/bookshelf/app/routes/index.tsx?browser", "../../../app/routes/index.tsx", "../../../app/components/books.tsx"],
-  "sourcesContent": ["module.exports = {};", "export { default } from \"/Users/chris/Projects/bookshelf/app/routes/index.tsx\";", "import type { BooksData } from '~/loaders/books.server';\n\nimport { useLoaderData } from '@remix-run/react';\nimport Books from '~/components/books';\n\nexport { booksLoader as loader } from '~/loaders/books.server';\n\nexport default function Index() {\n\tconst loaderData = useLoaderData<BooksData>();\n\n\treturn <Books loaderData={loaderData} />;\n}\n", "import type { BooksData } from '~/loaders/books.server';\n\ninterface IProps {\n\tloaderData: BooksData;\n}\n\nexport default function Books({ loaderData }: IProps) {\n\tconst { books } = loaderData;\n\n\tconsole.log(loaderData);\n\n\treturn <div>{books.length > 0 && <div>Books!</div>}</div>;\n}\n"],
-  "mappings": ";;;;;;;;;;;AAAA;AAAA;AAAA;AAAA,WAAO,UAAU;AAAA;AAAA;;;ACAjB;;;ACAA;;;ACAA;AAMe,eAAe,EAAE,cAAsB;AACrD,QAAM,EAAE,UAAU;AAElB,UAAQ,IAAI;AAEZ,SAAO,oCAAC,OAAD,MAAM,MAAM,SAAS,KAAK,oCAAC,OAAD,MAAK;AAAA;;;ADNvC,oBAAsC;AAEvB,iBAAiB;AAC/B,QAAM,aAAa;AAEnB,SAAO,oCAAC,OAAD;AAAA,IAAO;AAAA;AAAA;",
-  "names": []
-}

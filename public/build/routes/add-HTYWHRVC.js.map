@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/add.tsx?browser", "../../../app/routes/add.tsx", "../../../app/components/add-edit.tsx"],
-  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/add.tsx\";", "import AddEditBook from '~/components/add-edit';\n\nexport default function Add() {\n\treturn <AddEditBook book={null} />;\n}\n", "import type { IBook } from '~/utils/types';\n\ninterface IProps {\n\tbook: IBook | null;\n}\n\nexport default function AddEditBook({ book }: IProps) {\n\treturn <div></div>;\n}\n"],
-  "mappings": ";;;;;;AAAA;;;ACAA;;;ACAA;AAMe,qBAAqB,EAAE,QAAgB;AACrD,SAAO,oCAAC,OAAD;AAAA;;;ADLO,eAAe;AAC7B,SAAO,oCAAC,aAAD;AAAA,IAAa,MAAM;AAAA;AAAA;",
-  "names": []
-}

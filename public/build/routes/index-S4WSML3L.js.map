@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/index.tsx?browser", "../../../app/routes/index.tsx"],
-  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/index.tsx\";", "import type { BooksData } from '~/loaders/books.server';\n\nimport { useLoaderData } from '@remix-run/react';\nimport Books from '~/components/books';\n\nexport { booksLoader as loader } from '~/loaders/books.server';\n\nexport default function Index() {\n\tconst loaderData = useLoaderData<BooksData>();\n\n\treturn <Books loaderData={loaderData} />;\n}\n"],
-  "mappings": ";;;;;;;;;;;;AAAA;;;ACAA;AAKA,oBAAsC;AAEvB,iBAAiB;AAC/B,QAAM,aAAa;AAEnB,SAAO,oCAAC,OAAD;AAAA,IAAO;AAAA;AAAA;",
-  "names": []
-}
