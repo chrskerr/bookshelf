@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/$userId.tsx?browser", "../../../app/routes/$userId.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/$userId.tsx\";", "import type { CoreLoaderData } from '~/loaders/core.server';\n\nimport { useLoaderData } from '@remix-run/react';\nimport Core from '~/components/core';\n\nexport { coreLoader as loader } from '~/loaders/core.server';\n\nexport default function Index() {\n\tconst loaderData = useLoaderData<CoreLoaderData>();\n\n\treturn <Core loaderData={loaderData} />;\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAAA;;;ACAA;AAKA,mBAAqC;AAEtB,iBAAiB;AAC/B,QAAM,aAAa;AAEnB,SAAO,oCAAC,OAAD;AAAA,IAAM;AAAA;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["empty-module:~/loaders/books.server", "../../../app/components/books.tsx"],
+  "sourcesContent": ["module.exports = {};", "import type { BooksData } from '~/loaders/books.server';\n\nimport Nav from '~/components/nav';\n\ninterface IProps {\n\tloaderData: BooksData;\n}\n\nexport default function Books({ loaderData }: IProps) {\n\tconst { books } = loaderData;\n\n\tconsole.log(loaderData);\n\n\treturn <div>{books.length > 0 && <div>Books!</div>}</div>;\n}\n"],
+  "mappings": ";;;;;;;AAAA;AAAA;AAAA;AAAA,WAAO,UAAU;AAAA;AAAA;;;ACAjB;AAQe,eAAe,EAAE,cAAsB;AACrD,QAAM,EAAE,UAAU;AAElB,UAAQ,IAAI;AAEZ,SAAO,oCAAC,OAAD,MAAM,MAAM,SAAS,KAAK,oCAAC,OAAD,MAAK;AAAA;",
+  "names": []
+}

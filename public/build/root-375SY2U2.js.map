@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/root.tsx?browser", "../../app/root.tsx"],
+  "sourcesContent": ["export { default, links, meta } from \"/Users/chris/Projects/bookshelf/app/root.tsx\";", "import type { MetaFunction } from '@remix-run/node';\n\nimport {\n\tLinks,\n\tLiveReload,\n\tMeta,\n\tOutlet,\n\tScripts,\n\tScrollRestoration,\n} from '@remix-run/react';\n\nimport styles from './styles/app.css';\n\nexport const meta: MetaFunction = () => ({\n\tcharset: 'utf-8',\n\ttitle: 'Bookshelf',\n\tviewport: 'width=device-width,initial-scale=1',\n});\n\nexport function links() {\n\treturn [{ rel: 'stylesheet', href: styles }];\n}\n\nexport default function App() {\n\treturn (\n\t\t<html lang=\"en\">\n\t\t\t<head>\n\t\t\t\t<Meta />\n\t\t\t\t<Links />\n\t\t\t</head>\n\t\t\t<body>\n\t\t\t\t<Outlet />\n\t\t\t\t<ScrollRestoration />\n\t\t\t\t<Scripts />\n\t\t\t\t<LiveReload />\n\t\t\t</body>\n\t\t</html>\n\t);\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;;;ACAA;;;;;;AAaO,IAAM,OAAqB,MAAO;AAAA,EACxC,SAAS;AAAA,EACT,OAAO;AAAA,EACP,UAAU;AAAA;AAGJ,iBAAiB;AACvB,SAAO,CAAC,EAAE,KAAK,cAAc,MAAM;AAAA;AAGrB,eAAe;AAC7B,SACC,oCAAC,QAAD;AAAA,IAAM,MAAK;AAAA,KACV,oCAAC,QAAD,MACC,oCAAC,MAAD,OACA,oCAAC,OAAD,QAED,oCAAC,QAAD,MACC,oCAAC,QAAD,OACA,oCAAC,mBAAD,OACA,oCAAC,SAAD,OACA,oCAAC,YAAD;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/edit/$bookId.tsx?browser", "../../../../app/routes/edit/$bookId.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/edit/$bookId.tsx\";", "import { useParams } from '@remix-run/react';\n\nexport default function Update() {\n\tconst bookId = useParams();\n\treturn <div>{bookId}</div>;\n}\n"],
+  "mappings": ";;;;;;;;;AAAA;;;ACAA;AAEe,kBAAkB;AAChC,QAAM,SAAS;AACf,SAAO,oCAAC,OAAD,MAAM;AAAA;",
+  "names": []
+}

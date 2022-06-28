@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/add.tsx?browser", "../../../app/routes/add.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/add.tsx\";", "export default function Add() {\n\treturn <div></div>;\n}\n"],
+  "mappings": ";;;;;;AAAA;;;ACAA;AAAe,eAAe;AAC7B,SAAO,oCAAC,OAAD;AAAA;",
+  "names": []
+}

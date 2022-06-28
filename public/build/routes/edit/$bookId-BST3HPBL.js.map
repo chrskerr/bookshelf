@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/edit/$bookId.tsx?browser", "../../../../app/routes/edit/$bookId.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/edit/$bookId.tsx\";", "import type { LoaderFunction } from '@remix-run/node';\nimport { useParams } from '@remix-run/react';\nimport { db } from '~/utils/db.server';\nimport type { IBook } from '~/utils/types';\n\nexport const loader: LoaderFunction = async ({ params }) => {\n\tconst bookId = params.bookId;\n\n\tconst book: IBook = await db.book.findFirst({\n\t\twhere: { id: bookId },\n\t\tselect: {\n\t\t\tid: true,\n\t\t\ttitle: true,\n\t\t},\n\t});\n};\n\nexport default function Update() {\n\tconst { bookId } = useParams();\n\treturn <div>{bookId}</div>;\n}\n"],
+  "mappings": ";;;;;;;;;;;;;AAAA;;;ACAA;AAEA,gBAAmB;AAeJ,kBAAkB;AAChC,QAAM,EAAE,WAAW;AACnB,SAAO,oCAAC,OAAD,MAAM;AAAA;",
+  "names": []
+}

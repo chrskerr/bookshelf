@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/add.tsx?browser", "../../../app/routes/add.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/add.tsx\";", "import AddEditBook from '~/components/add-edit';\n\nexport default function Add() {\n\treturn <AddEditBook book={null} />;\n}\n"],
+  "mappings": ";;;;;;;;;AAAA;;;ACAA;AAEe,eAAe;AAC7B,SAAO,oCAAC,aAAD;AAAA,IAAa,MAAM;AAAA;AAAA;",
+  "names": []
+}

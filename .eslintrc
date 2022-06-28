@@ -1,0 +1,18 @@
+{
+	"extends": [
+		"@remix-run/eslint-config",
+		"@remix-run/eslint-config/node"
+	],
+	"rules": {
+		"prefer-const": "error",
+		"prefer-spread": "error",
+		"no-loop-func": "error",
+		"no-undef": "error",
+		"no-mixed-spaces-and-tabs": [
+			"warn",
+			"smart-tabs"
+		],
+		"@typescript-eslint/ban-ts-comment": "off",
+		"react-hooks/exhaustive-deps": "off"
+	}
+}

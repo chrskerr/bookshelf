@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/chris/Projects/bookshelf/app/routes/index.tsx?browser", "../../../app/routes/index.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/chris/Projects/bookshelf/app/routes/index.tsx\";", "import Index from '~/components';\nexport default Index;\n"],
+  "mappings": ";;;;;;;;AAAA;;;ACAA;AACA,IAAO,iBAAQ;",
+  "names": []
+}
