@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.add-edit form label {
+	@apply flex justify-between;
+}
+
+.add-edit form input {
+	@apply ml-4 border border-emerald-300 ring-emerald-300 w-[50%];
+}
+
+button.button {
+	@apply bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer px-3 py-1 rounded-md;
+}
+
+button.button.destructive {
+	@apply bg-red-500 hover:bg-red-600;
+}

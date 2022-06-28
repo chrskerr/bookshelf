@@ -1,8 +1,9 @@
 import type { LoaderFunction } from '@remix-run/node';
 import type { IBook } from '~/utils/types';
 
-import { json } from '@remix-run/node';
+import { json, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+
 import { db } from '~/utils/db.server';
 import { getUserIdFromRequest } from '~/utils/cookies.server';
 import AddEditBook from '~/components/add-edit';
@@ -21,6 +22,8 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 		select: {
 			id: true,
 			title: true,
+			purchasedAt: true,
+			firstPublishedAt: true,
 			users: {
 				where: { userId },
 				select: {
@@ -42,10 +45,16 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 		},
 	});
 
+	if (!book) {
+		return redirect('/');
+	}
+
 	return json(book);
 };
 
 export default function Update() {
-	const book = useLoaderData<IBook | null>();
+	const book = useLoaderData<IBook>();
 	return <AddEditBook book={book} />;
 }
+
+export { action } from '~/utils/update-book-action.server';

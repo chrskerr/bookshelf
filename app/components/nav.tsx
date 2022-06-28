@@ -1,6 +1,7 @@
 import type { Who } from '~/utils/types';
 
 import type { ChangeEvent } from 'react';
+import { Link } from '@remix-run/react';
 
 interface IProps {
 	userId: Who | null;
@@ -16,9 +17,12 @@ export default function Nav({ userId, updateUserId }: IProps) {
 
 	return (
 		<header className="w-full border-b-2 border-b-emerald-600 pb-8 mb-8">
-			<h1 className="text-4xl text-emerald-600 font-mono font-medium pb-4">
+			<Link
+				to="/"
+				className="inline-block text-4xl text-emerald-600 font-mono font-medium mb-4"
+			>
 				Bookshelf
-			</h1>
+			</Link>
 			<div className="text-xl">
 				<label htmlFor="userId">Who are you?</label>
 				<select
