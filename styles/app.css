@@ -11,9 +11,13 @@
 }
 
 button.button {
-	@apply bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer px-3 py-1 rounded-md shadow-md;
+	@apply bg-emerald-400 hover:bg-emerald-500 transition-all cursor-pointer px-3 py-1 rounded-md shadow;
 }
 
 button.button.destructive {
-	@apply bg-red-500 hover:bg-red-600;
+	@apply bg-red-400 hover:bg-red-500;
+}
+
+a.link {
+	@apply underline cursor-pointer hover:text-emerald-600 transition-colors;
 }

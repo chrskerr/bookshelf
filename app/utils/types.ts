@@ -15,3 +15,11 @@ export interface IBook {
 		name: string;
 	} | null;
 }
+
+export type Jsonify<T> = T extends { toJSON(): infer U }
+	? U
+	: T extends object
+	? {
+			[k in keyof T]: Jsonify<T[k]>;
+	  }
+	: T;

@@ -1,5 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node';
-import type { IBook } from '~/utils/types';
+import type { IBook, Jsonify } from '~/utils/types';
 
 import { json, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
@@ -54,8 +54,8 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 };
 
 export default function Update() {
-	const book = useLoaderData<IBook>();
+	const book = useLoaderData<Jsonify<IBook>>();
 	return <AddEditBook book={book} />;
 }
 
-export { action } from '~/utils/update-book-action.server';
+export { action } from '~/components/add-edit';

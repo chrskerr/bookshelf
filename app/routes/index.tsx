@@ -1,5 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node';
-import type { IBook } from '~/utils/types';
+import type { IBook, Jsonify } from '~/utils/types';
 
 import { useLoaderData } from '@remix-run/react';
 import Books from '~/components/books';
@@ -55,7 +55,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function Index() {
-	const loaderData = useLoaderData<IBooksData>();
+	const loaderData = useLoaderData<Jsonify<IBooksData>>();
 
 	return <Books loaderData={loaderData} />;
 }

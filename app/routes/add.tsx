@@ -4,4 +4,4 @@ export default function Add() {
 	return <AddEditBook book={null} />;
 }
 
-export { action } from '~/utils/update-book-action.server';
+export { action } from '~/components/add-edit';
