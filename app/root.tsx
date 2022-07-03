@@ -8,11 +8,11 @@ import {
 	ScrollRestoration,
 	useLoaderData,
 } from '@remix-run/react';
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Nav from './components/nav';
 
 import styles from './styles/app.css';
-import { getUserIdFromRequest, userIdCookie } from './utils/cookies.server';
+import { getUserIdFromRequest } from './utils/cookies.server';
 import type { Who } from './utils/types';
 
 export const meta: MetaFunction = () => ({
@@ -59,9 +59,9 @@ export default function App() {
 				<Links />
 			</head>
 			<body>
-				<div className="p-8 w-full">
+				<div className="w-full p-8">
 					<Nav userId={context.userId} updateUserId={updateUserId} />
-					<Outlet />
+					<Outlet context={context} />
 				</div>
 				<ScrollRestoration />
 				<Scripts />

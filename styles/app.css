@@ -6,18 +6,23 @@
 	@apply flex justify-between;
 }
 
+.add-edit form .rah-input-wrapper,
 .add-edit form input {
 	@apply ml-4 border border-emerald-300 ring-emerald-300 w-[50%];
 }
 
+.add-edit form .rah-input-wrapper input {
+	@apply ml-0 border-0 w-full
+}
+
 button.button {
-	@apply bg-emerald-400 hover:bg-emerald-500 transition-all cursor-pointer px-3 py-1 rounded-md shadow;
+	@apply px-3 py-1 transition-all rounded-md shadow cursor-pointer bg-emerald-400 hover:bg-emerald-500;
 }
 
 button.button.destructive {
 	@apply bg-red-400 hover:bg-red-500;
 }
 
-a.link {
-	@apply underline cursor-pointer hover:text-emerald-600 transition-colors;
+.link {
+	@apply underline transition-colors cursor-pointer hover:text-emerald-600;
 }

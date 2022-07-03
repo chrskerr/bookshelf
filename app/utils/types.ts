@@ -5,8 +5,8 @@ export interface IBook {
 	title: string;
 	isbn: string;
 	isOwned: boolean;
-	firstPublishedAt: Date;
-	authors: Array<{ author: { id: string; name: string } }>;
+	bookNumber: number;
+	author: { id: string; name: string } | null;
 	users: Array<{
 		readAt: Date | null;
 		readingOrder: number | null;
