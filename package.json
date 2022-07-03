@@ -3,7 +3,7 @@
 	"sideEffects": false,
 	"scripts": {
 		"deploy": "fly deploy --remote-only",
-		"seed": "node --require esbuild-register prisma/seed.ts",
+		"seed": "node prisma/seed.js",
 		"start": "remix-serve build",
 		"build": "npm run build:css && remix build",
 		"build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",

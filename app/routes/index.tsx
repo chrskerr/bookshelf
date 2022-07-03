@@ -27,7 +27,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 			select: {
 				id: true,
 				title: true,
-				isbn: true,
 				isOwned: true,
 				bookNumber: true,
 				users: {

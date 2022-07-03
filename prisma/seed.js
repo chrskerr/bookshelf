@@ -1,9 +1,7 @@
-import type { Who } from '~/utils/types';
-
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 const db = new PrismaClient();
 
-const desiredUserIds: Who[] = ['kate', 'chris'];
+const desiredUserIds = ['kate', 'chris'];
 
 async function seed() {
 	const existingUsers = await db.user.findMany();

@@ -17,7 +17,6 @@ interface IProps {
 interface UploadBook {
 	id?: string;
 	title?: string;
-	isbn?: string;
 	author?: string;
 	series?: string;
 	isOwned?: string;
@@ -32,7 +31,6 @@ export const action: ActionFunction = async ({ request }) => {
 		!bookData.author ||
 		!bookData.bookNumber ||
 		isNaN(parseInt(bookData.bookNumber)) ||
-		!bookData.isbn ||
 		!bookData.title
 	) {
 		throw new Response('Missing data', { status: 500 });
@@ -40,7 +38,6 @@ export const action: ActionFunction = async ({ request }) => {
 
 	const insertObj: Parameters<typeof db.book.upsert>[0]['create'] = {
 		title: bookData.title.trim(),
-		isbn: bookData.isbn.replace(/\D/g, ''),
 		isOwned: bookData.isOwned === 'on',
 		bookNumber: parseInt(bookData.bookNumber),
 		author: {
@@ -96,15 +93,6 @@ export default function AddEditBook({
 								type="text"
 								name="title"
 								defaultValue={book?.title}
-								required
-							/>
-						</label>
-						<label>
-							ISBN:
-							<input
-								type="text"
-								name="isbn"
-								defaultValue={book?.isbn}
 								required
 							/>
 						</label>
