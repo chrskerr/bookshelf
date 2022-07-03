@@ -1,10 +1,8 @@
-import type { Who } from '~/utils/types';
-
 import type { ChangeEvent } from 'react';
 import { Link } from '@remix-run/react';
 
 interface IProps {
-	userId: Who | null;
+	userId: string | null;
 	updateUserId: (userId: string) => Promise<void>;
 }
 
@@ -16,10 +14,10 @@ export default function Nav({ userId, updateUserId }: IProps) {
 	}
 
 	return (
-		<header className="w-full border-b-2 border-b-emerald-600 pb-8 mb-8">
+		<header className="w-full pb-8 mb-8 border-b-2 border-b-emerald-600">
 			<Link
 				to="/"
-				className="inline-block text-4xl text-emerald-600 font-mono font-medium mb-4"
+				className="inline-block mb-4 font-mono text-4xl font-medium text-emerald-600"
 			>
 				Bookshelf
 			</Link>

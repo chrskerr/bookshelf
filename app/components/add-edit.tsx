@@ -127,7 +127,6 @@ export default function AddEditBook({
 									name="series"
 									value={series}
 									onChange={e => setSeries(e.target.value)}
-									required
 								/>
 							</Hint>
 						</label>

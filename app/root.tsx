@@ -1,4 +1,5 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import {
 	Links,
 	LiveReload,
@@ -6,13 +7,15 @@ import {
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useFetcher,
 	useLoaderData,
 } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import Nav from './components/nav';
 
 import styles from './styles/app.css';
-import { getUserIdFromRequest } from './utils/cookies.server';
+import type { UserData } from './utils/cookies.server';
+import { getUserCookie, setUserCookie } from './utils/cookies.server';
 import type { Who } from './utils/types';
 
 export const meta: MetaFunction = () => ({
@@ -25,31 +28,25 @@ export function links() {
 	return [{ rel: 'stylesheet', href: styles }];
 }
 
-interface IContext {
-	isAuthed: boolean;
-	userId: Who | null;
-}
-
 function isWho(input: string): input is Who {
 	return input === 'chris' || input === 'kate';
 }
 
 export default function App() {
-	const userId = useLoaderData<Who | null>();
+	const userData = useLoaderData<UserData>();
+	const fetcher = useFetcher();
 
-	const [context, setContext] = useState<IContext>({
-		isAuthed: false,
-		userId: null,
-	});
+	const [context, setContext] = useState<UserData>(userData);
 
 	useEffect(() => {
-		setContext(c => ({ ...c, userId }));
-	}, [userId]);
+		setContext(userData);
+	}, [userData]);
 
 	async function updateUserId(newUserId: string): Promise<void> {
 		if (!isWho(newUserId)) return;
 		setContext(c => ({ ...c, userId: newUserId }));
 		await fetch(`/api/set-user/${newUserId}`);
+		fetcher.load('/');
 	}
 
 	return (
@@ -90,5 +87,11 @@ export default function App() {
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-	return await getUserIdFromRequest(request);
+	const cookie = await getUserCookie(request);
+	const res = json(cookie);
+	if (cookie) {
+		res.headers.set('Set-Cookie', await setUserCookie(cookie));
+	}
+
+	return res;
 };

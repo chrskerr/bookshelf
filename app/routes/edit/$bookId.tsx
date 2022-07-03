@@ -5,7 +5,7 @@ import { json, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { db } from '~/utils/db.server';
-import { getUserIdFromRequest } from '~/utils/cookies.server';
+import { getUserCookie } from '~/utils/cookies.server';
 import AddEditBook from '~/components/add-edit';
 
 type FetchData = {
@@ -17,7 +17,7 @@ type FetchData = {
 export const loader: LoaderFunction = async ({ params, request }) => {
 	const bookId = params.bookId;
 
-	const userId = await getUserIdFromRequest(request);
+	const userId = await getUserCookie(request);
 
 	if (!userId) {
 		return undefined;

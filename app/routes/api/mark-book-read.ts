@@ -1,7 +1,7 @@
 import type { ActionFunction } from '@remix-run/node';
 
 import { Response } from '@remix-run/web-fetch';
-import { getUserIdFromRequest } from '~/utils/cookies.server';
+import { getUserCookie } from '~/utils/cookies.server';
 import { db } from '~/utils/db.server';
 
 export interface IMarkBookRead {
@@ -11,7 +11,7 @@ export interface IMarkBookRead {
 
 export const action: ActionFunction = async ({ request }) => {
 	const body: IMarkBookRead = await request.json();
-	const userId = await getUserIdFromRequest(request);
+	const userId = await getUserCookie(request);
 
 	const bookId = body.bookId;
 

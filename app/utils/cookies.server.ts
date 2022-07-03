@@ -10,10 +10,19 @@ const cookieSettings: CookieOptions = {
 	sameSite: 'strict',
 };
 
-export const userIdCookie = createCookie('user-id', cookieSettings);
-export async function getUserIdFromRequest(
-	request: Request,
-): Promise<string | null> {
+const userCookie = createCookie('user', cookieSettings);
+
+export type UserData = { userId: string | null; isAuthenticated: boolean };
+
+export async function setUserCookie(userData: UserData) {
+	return await userCookie.serialize(userData);
+}
+export async function getUserCookie(request: Request): Promise<UserData> {
 	const cookieHeader = request.headers.get('Cookie');
-	return cookieHeader ? await userIdCookie.parse(cookieHeader) : null;
+	const cookie = cookieHeader ? await userCookie.parse(cookieHeader) : null;
+
+	if (cookie && typeof cookie === 'object') {
+		return cookie;
+	}
+	return { isAuthenticated: false, userId: null };
 }

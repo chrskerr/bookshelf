@@ -4,7 +4,8 @@ import type { IBook, Jsonify } from '~/utils/types';
 import { useFetcher, useLoaderData, useOutletContext } from '@remix-run/react';
 import Books from '~/components/books';
 import { json } from '@remix-run/node';
-import { getUserIdFromRequest } from '~/utils/cookies.server';
+import type { UserData } from '~/utils/cookies.server';
+import { getUserCookie } from '~/utils/cookies.server';
 import { db } from '~/utils/db.server';
 import { useEffect } from 'react';
 
@@ -13,9 +14,9 @@ export interface IBooksData {
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-	const userId = await getUserIdFromRequest(request);
+	const userData = await getUserCookie(request);
 
-	if (!userId) {
+	if (!userData?.userId) {
 		const emptyData: IBooksData = {
 			books: [],
 		};
@@ -30,7 +31,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 				isOwned: true,
 				bookNumber: true,
 				users: {
-					where: { userId },
+					where: { userId: userData.userId },
 					select: {
 						userId: true,
 						readAt: true,
@@ -69,7 +70,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Index() {
 	const loaderData = useLoaderData<Jsonify<IBooksData>>();
 	const fetcher = useFetcher<Jsonify<IBooksData>>();
-	const { userId } = useOutletContext<{ userId: string | undefined }>();
+	const { userId } = useOutletContext<UserData>();
 
 	useEffect(() => {
 		setTimeout(() => {
