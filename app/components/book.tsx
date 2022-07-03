@@ -30,6 +30,7 @@ export default function Book({ book, refetch }: IProps) {
 			<td>{book.title}</td>
 			<td>{book.author?.name ?? 'missing'}</td>
 			<td>{book.series?.name ?? 'n/a'}</td>
+			<td>{book.bookNumber ?? 1}</td>
 			<td>{book.isOwned ? 'yes' : 'no'}</td>
 			<td>{isRead ? 'yes' : 'no'}</td>
 			<td className="text-right link" onClick={markAsRead}>

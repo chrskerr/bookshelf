@@ -45,6 +45,21 @@ export const loader: LoaderFunction = async ({ request }) => {
 					},
 				},
 			},
+			orderBy: [
+				{
+					author: {
+						name: 'asc',
+					},
+				},
+				{
+					series: {
+						name: 'asc',
+					},
+				},
+				{
+					bookNumber: 'asc',
+				},
+			],
 		}),
 	};
 
@@ -59,7 +74,7 @@ export default function Index() {
 	useEffect(() => {
 		setTimeout(() => {
 			fetcher.load('/?index');
-		}, 10);
+		}, 100);
 	}, [userId]);
 
 	return (

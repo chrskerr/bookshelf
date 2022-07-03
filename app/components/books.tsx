@@ -28,6 +28,7 @@ export default function Books({ loaderData, refetch }: IProps) {
 							<th>Title</th>
 							<th>Authors</th>
 							<th>Series</th>
+							<th>Book number</th>
 							<th>Is Owned</th>
 							<th>Is Read</th>
 							<th></th>

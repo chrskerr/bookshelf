@@ -8,6 +8,12 @@ import { db } from '~/utils/db.server';
 import { getUserIdFromRequest } from '~/utils/cookies.server';
 import AddEditBook from '~/components/add-edit';
 
+type FetchData = {
+	book: IBook;
+	authorNames: string[];
+	seriesNames: string[];
+};
+
 export const loader: LoaderFunction = async ({ params, request }) => {
 	const bookId = params.bookId;
 
@@ -45,24 +51,25 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 		return redirect('/');
 	}
 
-	const authors = await db.author.findMany({ select: { name: true } });
-	const series = await db.series.findMany({ select: { name: true } });
+	const authors = await db.author.findMany({ include: { books: true } });
+	const series = await db.series.findMany({ include: { books: true } });
 
-	return json({
+	const fetchData: FetchData = {
 		book,
-		authorNames: authors.map(({ name }) => name),
-		seriesNames: series.map(({ name }) => name),
-	});
+		authorNames: authors
+			.map(({ name, books }) => (books.length ? name : false))
+			.filter((name): name is string => typeof name === 'string'),
+		seriesNames: series
+			.map(({ name, books }) => (books.length ? name : false))
+			.filter((name): name is string => typeof name === 'string'),
+	};
+
+	return json(fetchData);
 };
 
 export default function Update() {
-	const { book, authorNames, seriesNames } = useLoaderData<
-		Jsonify<{
-			book: IBook;
-			authorNames: string[];
-			seriesNames: string[];
-		}>
-	>();
+	const { book, authorNames, seriesNames } =
+		useLoaderData<Jsonify<FetchData>>();
 	return (
 		<AddEditBook
 			book={book}
