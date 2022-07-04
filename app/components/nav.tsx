@@ -14,28 +14,33 @@ export default function Nav({ userId, updateUserId }: IProps) {
 	}
 
 	return (
-		<header className="w-full pb-8 mb-8 border-b-2 border-b-emerald-600">
-			<Link
-				to="/"
-				className="inline-block mb-4 font-mono text-4xl font-medium text-emerald-600"
-			>
-				Bookshelf
-			</Link>
-			<div className="text-xl">
-				<label htmlFor="userId">Who are you?</label>
-				<select
-					id="userId"
-					value={userId ?? 'none'}
-					onChange={handleChange}
-					className="ml-2"
+		<header className="flex items-end justify-between w-full pb-8 mb-8 border-b-2 border-b-emerald-600">
+			<div>
+				<Link
+					to="/"
+					className="inline-block mb-4 font-mono text-4xl font-medium text-emerald-600"
 				>
-					<option disabled value="none">
-						Please choose
-					</option>
-					<option value="kate">Kate</option>
-					<option value="chris">Chris</option>
-				</select>
+					Bookshelf
+				</Link>
+				<div className="text-xl">
+					<label htmlFor="userId">Who are you?</label>
+					<select
+						id="userId"
+						value={userId ?? 'none'}
+						onChange={handleChange}
+						className="ml-2"
+					>
+						<option disabled value="none">
+							Please choose
+						</option>
+						<option value="kate">Kate</option>
+						<option value="chris">Chris</option>
+					</select>
+				</div>
 			</div>
+			<button className="button">
+				<Link to="/add">Add new book</Link>
+			</button>
 		</header>
 	);
 }

@@ -65,14 +65,12 @@ model UsersBooks {
     book   Book   @relation(fields: [bookId], references: [id])
     bookId String
 
-    readAt       DateTime?
-    readingOrder Int?
+    readAt   DateTime?
+    readNext Boolean   @default(false)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@id([userId, bookId])
-    @@unique([userId, readingOrder])
     @@index([userId])
-    @@index([userId, readingOrder])
 }

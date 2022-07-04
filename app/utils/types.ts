@@ -8,7 +8,7 @@ export interface IBook {
 	author: { id: string; name: string } | null;
 	users: Array<{
 		readAt: Date | null;
-		readingOrder: number | null;
+		readNext: boolean;
 	}>;
 	series: {
 		name: string;

@@ -17,7 +17,7 @@ type FetchData = {
 export const loader: LoaderFunction = async ({ params, request }) => {
 	const bookId = params.bookId;
 
-	const userId = await getUserCookie(request);
+	const { userId } = await getUserCookie(request);
 
 	if (!userId) {
 		return undefined;
@@ -34,7 +34,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 				where: { userId },
 				select: {
 					readAt: true,
-					readingOrder: true,
+					readNext: true,
 				},
 				take: 1,
 			},

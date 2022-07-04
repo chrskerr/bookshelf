@@ -87,7 +87,7 @@ export default function AddEditBook({
 							name="id"
 							defaultValue={book?.id}
 						/>
-						<label>
+						<label className="label">
 							Title:
 							<input
 								type="text"
@@ -96,7 +96,7 @@ export default function AddEditBook({
 								required
 							/>
 						</label>
-						<label>
+						<label className="label">
 							Author:
 							<Hint
 								options={authorNames}
@@ -114,7 +114,7 @@ export default function AddEditBook({
 								/>
 							</Hint>
 						</label>
-						<label>
+						<label className="label">
 							Series:
 							<Hint
 								options={seriesNames}
@@ -130,7 +130,7 @@ export default function AddEditBook({
 								/>
 							</Hint>
 						</label>
-						<label>
+						<label className="label">
 							Is owned?
 							<input
 								type="checkbox"
@@ -139,7 +139,7 @@ export default function AddEditBook({
 								className="h-full"
 							/>
 						</label>
-						<label>
+						<label className="label">
 							Book number
 							<input
 								type="number"

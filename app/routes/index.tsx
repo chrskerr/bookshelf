@@ -35,7 +35,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 					select: {
 						userId: true,
 						readAt: true,
-						readingOrder: true,
+						readNext: true,
 					},
 					take: 1,
 				},

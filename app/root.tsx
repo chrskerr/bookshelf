@@ -74,7 +74,7 @@ export default function App() {
 				<link rel="manifest" href="/site.webmanifest" />
 			</head>
 			<body>
-				<div className="w-full p-8">
+				<div className="w-full p-8 ">
 					<Nav userId={context.userId} updateUserId={updateUserId} />
 					<Outlet context={context} />
 				</div>
