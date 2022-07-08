@@ -18,7 +18,7 @@ export default function Nav({ userId, updateUserId }: IProps) {
 			<div>
 				<Link
 					to="/"
-					className="inline-block mb-4 font-mono text-4xl font-medium text-emerald-600"
+					className="inline-block mb-4 text-4xl font-medium text-emerald-600"
 				>
 					Bookshelf
 				</Link>

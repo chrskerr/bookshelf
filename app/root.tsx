@@ -1,4 +1,5 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import { redirect } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
 	Links,
@@ -88,10 +89,12 @@ export default function App() {
 
 export const loader: LoaderFunction = async ({ request }) => {
 	const cookie = await getUserCookie(request);
-	const res = json(cookie);
-	if (cookie) {
-		res.headers.set('Set-Cookie', await setUserCookie(cookie));
+
+	if (!cookie.isAuthenticated && !request.url.endsWith('/login')) {
+		return redirect('/login');
 	}
 
+	const res = json(cookie);
+	res.headers.set('Set-Cookie', await setUserCookie(cookie));
 	return res;
 };

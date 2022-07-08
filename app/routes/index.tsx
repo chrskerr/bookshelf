@@ -75,7 +75,7 @@ export default function Index() {
 	useEffect(() => {
 		setTimeout(() => {
 			fetcher.load('/?index');
-		}, 100);
+		}, 500);
 	}, [userId]);
 
 	return (
