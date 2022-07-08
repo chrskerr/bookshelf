@@ -16,7 +16,7 @@ export interface IBooksData {
 export const loader: LoaderFunction = async ({ request }) => {
 	const userData = await getUserCookie(request);
 
-	if (!userData?.userId) {
+	if (!userData?.userId || !userData.isAuthenticated) {
 		const emptyData: IBooksData = {
 			books: [],
 		};

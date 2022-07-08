@@ -17,9 +17,9 @@ type FetchData = {
 export const loader: LoaderFunction = async ({ params, request }) => {
 	const bookId = params.bookId;
 
-	const { userId } = await getUserCookie(request);
+	const { userId, isAuthenticated } = await getUserCookie(request);
 
-	if (!userId) {
+	if (!userId || !isAuthenticated) {
 		return undefined;
 	}
 

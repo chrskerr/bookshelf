@@ -11,7 +11,8 @@ export interface IMarkBookRead {
 
 export const action: ActionFunction = async ({ request }) => {
 	const body: IMarkBookRead = await request.json();
-	const { userId } = await getUserCookie(request);
+	const { userId, isAuthenticated } = await getUserCookie(request);
+	if (!isAuthenticated) return undefined;
 
 	const bookId = body.bookId;
 

@@ -7,6 +7,7 @@ import { redirect } from '@remix-run/node';
 import { db } from '~/utils/db.server';
 import { Hint } from 'react-autocomplete-hint';
 import { useState } from 'react';
+import { getUserCookie } from '~/utils/cookies.server';
 
 interface IProps {
 	book: Jsonify<IBook> | null;
@@ -24,6 +25,9 @@ interface UploadBook {
 }
 
 export const action: ActionFunction = async ({ request }) => {
+	const cookie = await getUserCookie(request);
+	if (!cookie.isAuthenticated) return undefined;
+
 	const formData = await request.formData();
 	const bookData = Object.fromEntries(formData) as UploadBook;
 
