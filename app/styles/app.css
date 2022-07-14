@@ -550,6 +550,18 @@ video {
   width: 100%;
 }
 
+.min-w-\[800px\] {
+  min-width: 800px;
+}
+
+.max-w-\[30vw\] {
+  max-width: 30vw;
+}
+
+.max-w-\[20vw\] {
+  max-width: 20vw;
+}
+
 .table-auto {
   table-layout: auto;
 }
@@ -584,6 +596,12 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .border-b-2 {
