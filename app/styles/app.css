@@ -550,14 +550,6 @@ video {
   width: 100%;
 }
 
-.min-w-\[800px\] {
-  min-width: 800px;
-}
-
-.max-w-\[30vw\] {
-  max-width: 30vw;
-}
-
 .max-w-\[20vw\] {
   max-width: 20vw;
 }
