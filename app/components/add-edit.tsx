@@ -85,7 +85,7 @@ export default function AddEditBook({
 		<div className="add-edit">
 			<Form method="post">
 				<fieldset disabled={transition.state === 'submitting'}>
-					<div className="grid grid-flow-row grid-cols-2 gap-4">
+					<div className="grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2">
 						<input
 							type="hidden"
 							name="id"

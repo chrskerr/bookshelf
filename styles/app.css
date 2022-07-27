@@ -18,6 +18,10 @@ label.label > * {
 	@apply w-[50%];
 }
 
+.rah-input-wrapper input {
+	@apply w-full;
+}
+
 button.button {
 	@apply px-3 py-1 transition-all rounded-md shadow cursor-pointer bg-emerald-400 hover:bg-emerald-500;
 }

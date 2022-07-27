@@ -42,7 +42,7 @@ export default function Books({ loaderData, refetch }: IProps) {
 
 	return (
 		<div className="w-full">
-			<div className="grid grid-cols-3 mb-4">
+			<div className="max-w-xs mb-4">
 				<label className="label">
 					Search:
 					<input

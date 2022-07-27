@@ -2,7 +2,7 @@ import type { LoaderFunction } from '@remix-run/node';
 import type { IBook, Jsonify } from '~/utils/types';
 
 import { useFetcher, useLoaderData, useOutletContext } from '@remix-run/react';
-import Books from '~/components/books_grid';
+import Books from '~/components/books';
 import { json } from '@remix-run/node';
 import type { UserData } from '~/utils/cookies.server';
 import { getUserCookie } from '~/utils/cookies.server';
