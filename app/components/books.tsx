@@ -60,7 +60,7 @@ export default function Books({ loaderData, refetch }: IProps) {
 					<thead className="sticky top-0 pb-4 text-lg font-medium text-left bg-white">
 						<tr>
 							<th>Title</th>
-							<th>Authors</th>
+							<th>Author</th>
 							<th>Series</th>
 							<th>Book #</th>
 							<th>Owned</th>
