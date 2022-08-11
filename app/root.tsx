@@ -15,7 +15,6 @@ import { useEffect, useState } from 'react';
 import Nav from './components/nav';
 
 import styles from './styles/app.css';
-import gridjsStyles from 'gridjs/dist/theme/mermaid.min.css';
 
 import type { UserData } from './utils/cookies.server';
 import { getUserCookie, setUserCookie } from './utils/cookies.server';
@@ -28,10 +27,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export function links() {
-	return [
-		{ rel: 'stylesheet', href: styles },
-		{ rel: 'stylesheet', href: gridjsStyles },
-	];
+	return [{ rel: 'stylesheet', href: styles }];
 }
 
 function isWho(input: string): input is Who {

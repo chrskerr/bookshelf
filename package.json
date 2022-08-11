@@ -11,12 +11,10 @@
 		"dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css"
 	},
 	"dependencies": {
-		"@prisma/client": "^4.1.1",
+		"@prisma/client": "^4.2.1",
 		"@remix-run/node": "^1.6.7",
 		"@remix-run/react": "^1.6.7",
 		"@remix-run/serve": "^1.6.7",
-		"gridjs": "^5.0.2",
-		"gridjs-react": "^5.0.2",
 		"react": "^18.2.0",
 		"react-autocomplete-hint": "^2.0.0",
 		"react-dom": "^18.2.0"
@@ -24,14 +22,14 @@
 	"devDependencies": {
 		"@remix-run/dev": "^1.6.7",
 		"@remix-run/eslint-config": "^1.6.7",
-		"@types/react": "^18.0.16",
+		"@types/react": "^18.0.17",
 		"@types/react-dom": "^18.0.6",
 		"autoprefixer": "^10.4.8",
 		"concurrently": "^7.3.0",
 		"esbuild-register": "^3.3.3",
 		"eslint": "^8.21.0",
 		"postcss": "^8.4.16",
-		"prisma": "^4.1.1",
+		"prisma": "^4.2.1",
 		"tailwindcss": "^3.1.8",
 		"typescript": "^4.7.4"
 	},

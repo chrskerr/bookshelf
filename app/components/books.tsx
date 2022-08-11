@@ -9,27 +9,52 @@ interface IProps {
 	refetch: () => void;
 }
 
+enum Filters {
+	ALL = 'all',
+	NOT_OWNED = 'not-owned',
+	UNREAD = 'unread',
+	READ = 'read',
+}
+
 export default function Books({ loaderData, refetch }: IProps) {
 	const { books } = loaderData;
 	const [terms, setTerms] = useState('');
+	const [filter, setFilter] = useState<Filters>(Filters.ALL);
 
 	const filterTerms = terms
 		.split(' ')
 		.map(term => term.toLowerCase())
 		.filter(Boolean);
-	const filteredBooks = terms
-		? books.filter(book => {
-				const matches = filterTerms.map<boolean>(term => {
-					return (
-						book.author?.name.toLowerCase().includes(term) ||
-						book.title.toLowerCase().includes(term) ||
-						book.series?.name.toLowerCase().includes(term) ||
-						false
-					);
-				});
-				return !matches.includes(false);
-		  })
-		: books;
+
+	const filteredBooks =
+		terms || filter !== Filters.ALL
+			? books.filter(book => {
+					switch (filter) {
+						case Filters.ALL:
+							break;
+						case Filters.NOT_OWNED:
+							if (book.isOwned) return false;
+							break;
+						case Filters.READ:
+							if (!book.users[0]?.readAt) return false;
+							break;
+
+						case Filters.UNREAD:
+							if (book.users[0]?.readAt) return false;
+							break;
+					}
+
+					const matches = filterTerms.map<boolean>(term => {
+						return (
+							book.author?.name.toLowerCase().includes(term) ||
+							book.title.toLowerCase().includes(term) ||
+							book.series?.name.toLowerCase().includes(term) ||
+							false
+						);
+					});
+					return !matches.includes(false);
+			  })
+			: books;
 
 	const sortedBooks = filteredBooks.sort((a, b) => {
 		const aReadNext = !!a.users[0]?.readNext;
@@ -42,7 +67,7 @@ export default function Books({ loaderData, refetch }: IProps) {
 
 	return (
 		<div className="w-full">
-			<div className="max-w-xs mb-4">
+			<div className="max-w-xl pb-4">
 				<label className="label">
 					Search:
 					<input
@@ -52,6 +77,18 @@ export default function Books({ loaderData, refetch }: IProps) {
 						value={terms}
 						onChange={e => setTerms(e.target.value)}
 					/>
+				</label>
+				<label className="my-4 label">
+					Filter:
+					<select
+						value={filter}
+						onChange={e => setFilter(e.target.value as Filters)}
+					>
+						<option value={Filters.ALL}>All books</option>
+						<option value={Filters.NOT_OWNED}>Not owned</option>
+						<option value={Filters.READ}>Read</option>
+						<option value={Filters.UNREAD}>Unread</option>
+					</select>
 				</label>
 			</div>
 
