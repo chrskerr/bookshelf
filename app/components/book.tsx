@@ -45,31 +45,31 @@ export default function Book({ book, refetch }: IProps) {
 	}
 
 	return (
-		<tr key={book.id}>
-			<td className="truncate">{book.title}</td>
-			<td className="truncate">{book.author?.name ?? 'missing'}</td>
-			<td className="truncate">{book.series?.name ?? ''}</td>
-			<td>{book.series?.name ? book.bookNumber : ''}</td>
-			<td>{book.isOwned ? 'yes' : 'no'}</td>
-			<td>
+		<>
+			<p className="truncate">{book.title}</p>
+			<p className="truncate">{book.author?.name ?? 'missing'}</p>
+			<p className="truncate">{book.series?.name ?? ''}</p>
+			<p>{book.series?.name ? book.bookNumber : ''}</p>
+			<p>{book.isOwned ? 'yes' : 'no'}</p>
+			<p>
 				<input
 					type="checkbox"
 					defaultChecked={isRead}
 					onClick={markAsRead}
 				/>
-			</td>
-			<td>
+			</p>
+			<p>
 				<input
 					type="checkbox"
 					defaultChecked={isReadNext}
 					onClick={markAsReadNext}
 				/>
-			</td>
-			<td>
+			</p>
+			<p>
 				<Link to={`/edit/${book.id}`} className="link">
 					Edit
 				</Link>
-			</td>
-		</tr>
+			</p>
+		</>
 	);
 }

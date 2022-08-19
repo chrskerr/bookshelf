@@ -34,14 +34,3 @@ button.button.destructive {
 	@apply underline transition-colors cursor-pointer hover:text-emerald-600;
 }
 
-tbody tr:nth-child(odd) {
-	@apply bg-emerald-50;
-}
-
-td, th {
-	@apply px-2 py-1;
-}
-
-td:last-child, th:last-child {
-	@apply pr-0;
-}
