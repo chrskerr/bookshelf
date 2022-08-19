@@ -46,11 +46,9 @@ export default function Book({ book, refetch }: IProps) {
 
 	return (
 		<tr key={book.id}>
-			<td className="truncate max-w-[20vw]">{book.title}</td>
-			<td className="truncate max-w-[20vw]">
-				{book.author?.name ?? 'missing'}
-			</td>
-			<td className="truncate max-w-[20vw]">{book.series?.name ?? ''}</td>
+			<td className="truncate">{book.title}</td>
+			<td className="truncate">{book.author?.name ?? 'missing'}</td>
+			<td className="truncate">{book.series?.name ?? ''}</td>
 			<td>{book.series?.name ? book.bookNumber : ''}</td>
 			<td>{book.isOwned ? 'yes' : 'no'}</td>
 			<td>

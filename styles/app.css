@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-h1, h2, h3, h4, h5, h6, th {
+h1, h2, h3, h4, h5, h6, th, * {
 	@apply font-mono;
 }
 
@@ -34,16 +34,12 @@ button.button.destructive {
 	@apply underline transition-colors cursor-pointer hover:text-emerald-600;
 }
 
-tr:nth-child(2n+2) {
+tbody tr:nth-child(odd) {
 	@apply bg-emerald-50;
 }
 
 td, th {
 	@apply px-2 py-1;
-}
-
-td:first-child, th:first-child {
-	@apply pl-0;
 }
 
 td:last-child, th:last-child {

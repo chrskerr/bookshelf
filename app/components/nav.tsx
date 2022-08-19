@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react';
-import { Link } from '@remix-run/react';
+import { Link, useLocation } from '@remix-run/react';
 
 interface IProps {
 	userId: string | null;
@@ -12,6 +12,8 @@ export default function Nav({ userId, updateUserId }: IProps) {
 	): Promise<void> {
 		updateUserId(e.target.value);
 	}
+
+	const location = useLocation();
 
 	return (
 		<header className="flex items-end justify-between w-full pb-8 mb-8 border-b-2 border-b-emerald-600">
@@ -38,9 +40,11 @@ export default function Nav({ userId, updateUserId }: IProps) {
 					</select>
 				</div>
 			</div>
-			<button className="button">
-				<Link to="/add">Add new book</Link>
-			</button>
+			{location.pathname === '/' && (
+				<button className="button">
+					<Link to="/add">Add new book</Link>
+				</button>
+			)}
 		</header>
 	);
 }

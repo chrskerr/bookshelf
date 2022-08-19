@@ -93,17 +93,17 @@ export default function Books({ loaderData, refetch }: IProps) {
 			</div>
 
 			{sortedBooks.length > 0 && (
-				<table className="w-full table-auto">
+				<table className="w-full table-auto min-w-[1200px]">
 					<thead className="sticky top-0 pb-4 text-lg font-medium text-left bg-white">
 						<tr>
-							<th>Title</th>
-							<th>Author</th>
-							<th>Series</th>
-							<th>Book #</th>
-							<th>Owned</th>
-							<th>Have Read</th>
-							<th>Reading list</th>
-							<th></th>
+							<th className="w-[20%]">Title</th>
+							<th className="w-[20%]">Author</th>
+							<th className="w-[20%]">Series</th>
+							<th className="w-[8%]">Book #</th>
+							<th className="w-[8%]">Owned</th>
+							<th className="w-[8%]">Have Read</th>
+							<th className="w-[8%]">Reading list</th>
+							<th className="w-[8%]"></th>
 						</tr>
 					</thead>
 					<tbody>
