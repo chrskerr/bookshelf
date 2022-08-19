@@ -563,6 +563,18 @@ video {
   width: 8%;
 }
 
+.w-\[19\%\] {
+  width: 19%;
+}
+
+.w-\[18\%\] {
+  width: 18%;
+}
+
+.w-\[9\%\] {
+  width: 9%;
+}
+
 .min-w-\[1200px\] {
   min-width: 1200px;
 }
@@ -643,10 +655,6 @@ video {
   text-align: left;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -660,6 +668,11 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .font-medium {
