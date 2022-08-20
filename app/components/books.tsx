@@ -30,14 +30,26 @@ function sortByTitle(a: IBook, b: IBook): number {
 	return a.title.localeCompare(b.title) ?? 0;
 }
 function sortByAuthor(a: IBook, b: IBook): number {
+	if (a.author?.name === b.author?.name) {
+		return a.title.localeCompare(b.title);
+	}
 	return a.author?.name.localeCompare(b.author?.name ?? '') ?? 0;
 }
 function sortBySeries(a: IBook, b: IBook): number {
-	return a.series?.name.localeCompare(b.series?.name ?? '') ?? 0;
+	if (!a.series?.name) {
+		return b.series?.name ? 1 : 0;
+	}
+	if (!b.series?.name) {
+		return a.series?.name ? 1 : 0;
+	}
+
+	if (a.series.name === b.series.name) {
+		return a.bookNumber - b.bookNumber;
+	}
+
+	return a.series.name.localeCompare(b.series.name);
 }
-function sortByBookNumber(a: IBook, b: IBook): number {
-	return a.bookNumber - b.bookNumber;
-}
+
 function sortByReadingList(a: IBook, b: IBook): number {
 	const aReadNext = !!a.users[0]?.readNext;
 	const bReadNext = !!b.users[0]?.readNext;
@@ -52,15 +64,11 @@ function sortBooks(books: IBook[], sort: Sorting): IBook[] {
 		case Sorting.READING_LIST:
 			return books
 				.sort(sortByAuthor)
-				.sort(sortByBookNumber)
 				.sort(sortBySeries)
 				.sort(sortByReadingList);
 
 		case Sorting.SERIES_THEN_AUTHOR:
-			return books
-				.sort(sortByAuthor)
-				.sort(sortByBookNumber)
-				.sort(sortBySeries);
+			return books.sort(sortByAuthor).sort(sortBySeries);
 
 		case Sorting.AUTHOR:
 			return books.sort(sortByAuthor);
@@ -160,7 +168,7 @@ export default function Books({ loaderData, refetch }: IProps) {
 							Reading list
 						</option>
 						<option value={Sorting.SERIES_THEN_AUTHOR}>
-							Series
+							Author &amp; Series
 						</option>
 						<option value={Sorting.AUTHOR}>Author</option>
 						<option value={Sorting.TITLE}>Title</option>
