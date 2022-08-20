@@ -46,21 +46,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 					},
 				},
 			},
-			orderBy: [
-				{
-					author: {
-						name: 'asc',
-					},
-				},
-				{
-					series: {
-						name: 'asc',
-					},
-				},
-				{
-					bookNumber: 'asc',
-				},
-			],
 		}),
 	};
 
