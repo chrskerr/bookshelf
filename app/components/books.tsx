@@ -26,21 +26,9 @@ enum Sorting {
 
 type IBook = IProps['loaderData']['books'][0];
 
-function sortByTitle(a: IBook, b: IBook): number {
-	return a.title.localeCompare(b.title) ?? 0;
-}
-function sortByAuthor(a: IBook, b: IBook): number {
-	if (a.author?.name === b.author?.name) {
-		return a.title.localeCompare(b.title);
-	}
-	return a.author?.name.localeCompare(b.author?.name ?? '') ?? 0;
-}
 function sortBySeries(a: IBook, b: IBook): number {
-	if (!a.series?.name) {
-		return b.series?.name ? 1 : 0;
-	}
-	if (!b.series?.name) {
-		return a.series?.name ? 1 : 0;
+	if (!a.series || !b.series) {
+		return a.author?.name.localeCompare(b.author?.name ?? '') ?? 0;
 	}
 
 	if (a.series.name === b.series.name) {
@@ -50,31 +38,31 @@ function sortBySeries(a: IBook, b: IBook): number {
 	return a.series.name.localeCompare(b.series.name);
 }
 
-function sortByReadingList(a: IBook, b: IBook): number {
-	const aReadNext = !!a.users[0]?.readNext;
-	const bReadNext = !!b.users[0]?.readNext;
-
-	if (aReadNext && !bReadNext) return -1;
-	if (bReadNext && !aReadNext) return 1;
-	return 0;
-}
-
 function sortBooks(books: IBook[], sort: Sorting): IBook[] {
 	switch (sort) {
 		case Sorting.READING_LIST:
-			return books
-				.sort(sortByAuthor)
-				.sort(sortBySeries)
-				.sort(sortByReadingList);
+			return books.sort((a, b) => {
+				const aReadNext = !!a.users[0]?.readNext;
+				const bReadNext = !!b.users[0]?.readNext;
+
+				if (aReadNext && !bReadNext) return -1;
+				if (bReadNext && !aReadNext) return 1;
+
+				return sortBySeries(a, b);
+			});
 
 		case Sorting.SERIES_THEN_AUTHOR:
-			return books.sort(sortByAuthor).sort(sortBySeries);
+			return books.sort(sortBySeries);
 
 		case Sorting.AUTHOR:
-			return books.sort(sortByAuthor);
+			return books.sort((a, b) => {
+				return a.author?.name.localeCompare(b.author?.name ?? '') ?? 0;
+			});
 
 		case Sorting.TITLE:
-			return books.sort(sortByTitle);
+			return books.sort((a, b) => {
+				return a.title.localeCompare(b.title);
+			});
 
 		default:
 			return books;
