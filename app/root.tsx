@@ -87,7 +87,7 @@ export default function App() {
 				/>
 			</head>
 			<body>
-				<div className="w-full p-8 ">
+				<div className="w-full min-h-screen p-4 md:p-8">
 					<Nav userId={context.userId} updateUserId={updateUserId} />
 					<Outlet context={context} />
 				</div>

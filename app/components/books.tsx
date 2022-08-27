@@ -3,6 +3,7 @@ import type { IBooksData } from '~/routes';
 import type { Jsonify } from '~/utils/types';
 
 import Book from './book';
+import BookCard from './book-card';
 
 interface IProps {
 	loaderData: Jsonify<IBooksData>;
@@ -116,7 +117,7 @@ export default function Books({ loaderData, refetch }: IProps) {
 	const sortedBooks = sortBooks(filteredBooks, sort);
 
 	const gridClasses =
-		'grid grid-cols-[repeat(3,4fr)_repeat(5,1fr)] w-full min-w-[1200px] p-1 gap-x-2';
+		'grid grid-cols-[repeat(3,4fr)_repeat(5,1fr)] w-full p-1 gap-x-2';
 
 	return (
 		<div className="w-full">
@@ -166,29 +167,40 @@ export default function Books({ loaderData, refetch }: IProps) {
 
 			{sortedBooks.length > 0 && (
 				<>
-					<div
-						className={`${gridClasses} sticky top-0 pb-4 font-medium text-left bg-white`}
-					>
-						<p className="w-[19%]">Title</p>
-						<p className="w-[18%]">Author</p>
-						<p className="w-[18%]">Series</p>
-						<p className="w-[9%]">Book #</p>
-						<p className="w-[9%]">Owned</p>
-						<p className="w-[9%]">Have Read</p>
-						<p className="w-[9%]">Reading list</p>
-						<p className="w-[9%]"></p>
-						<p />
-					</div>
-					{sortedBooks.map((book, i) => (
+					<div className="hidden md:block">
 						<div
-							key={book.id}
-							className={`${gridClasses} ${
-								i % 2 === 0 ? 'bg-emerald-50' : ''
-							}`}
+							className={`${gridClasses} sticky top-0 pb-4 font-medium text-left bg-white`}
 						>
-							<Book key={book.id} book={book} refetch={refetch} />
+							<p className="w-[19%]">Title</p>
+							<p className="w-[18%]">Author</p>
+							<p className="w-[18%]">Series</p>
+							<p className="w-[9%]">Book #</p>
+							<p className="w-[9%]">Owned</p>
+							<p className="w-[9%]">Have Read</p>
+							<p className="w-[9%]">Reading list</p>
+							<p className="w-[9%]"></p>
+							<p />
 						</div>
-					))}
+						{sortedBooks.map((book, i) => (
+							<div
+								key={book.id}
+								className={`${gridClasses} ${
+									i % 2 === 0 ? 'bg-emerald-50' : ''
+								}`}
+							>
+								<Book book={book} refetch={refetch} />
+							</div>
+						))}
+					</div>
+					<div className="md:hidden">
+						{sortedBooks.map((book, i) => (
+							<BookCard
+								key={book.id}
+								book={book}
+								refetch={refetch}
+							/>
+						))}
+					</div>
 				</>
 			)}
 		</div>

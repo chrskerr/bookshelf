@@ -16,7 +16,7 @@ export default function Nav({ userId, updateUserId }: IProps) {
 	const location = useLocation();
 
 	return (
-		<header className="flex items-end justify-between w-full pb-8 mb-8 border-b-2 border-b-emerald-600">
+		<header className="flex flex-col items-start w-full pb-8 mb-8 border-b-2 md:justify-between md:items-end md:flex-row border-b-emerald-600">
 			<div>
 				<Link
 					to="/"
@@ -24,7 +24,7 @@ export default function Nav({ userId, updateUserId }: IProps) {
 				>
 					Bookshelf
 				</Link>
-				<div className="text-xl">
+				<div className="mb-2 text-xl mb:mb-0">
 					<label htmlFor="userId">Who are you?</label>
 					<select
 						id="userId"

@@ -49,7 +49,7 @@ export default function Book({ book, refetch }: IProps) {
 			<p className="truncate">{book.title}</p>
 			<p className="truncate">{book.author?.name ?? 'missing'}</p>
 			<p className="truncate">{book.series?.name ?? ''}</p>
-			<p>{book.series?.name ? book.bookNumber : ''}</p>
+			<p>{book.series?.name ? book.bookNumber : 'n/a'}</p>
 			<p>{book.isOwned ? 'yes' : 'no'}</p>
 			<p>
 				<input
