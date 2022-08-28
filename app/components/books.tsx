@@ -81,39 +81,34 @@ export default function Books({ loaderData, refetch }: IProps) {
 		.map(term => term.toLowerCase())
 		.filter(Boolean);
 
-	const filteredBooks =
-		terms || filter !== Filters.ALL
-			? books.filter(book => {
-					switch (filter) {
-						case Filters.ALL:
-							break;
-						case Filters.NOT_OWNED:
-							if (book.isOwned) return false;
-							break;
-						case Filters.READ:
-							if (!book.users[0]?.readAt) return false;
-							break;
+	const filteredBooks = books.filter(book => {
+		switch (filter) {
+			case Filters.ALL:
+				break;
+			case Filters.NOT_OWNED:
+				if (book.isOwned) return false;
+				break;
+			case Filters.READ:
+				if (!book.users[0]?.readAt) return false;
+				break;
+			case Filters.UNREAD:
+				if (book.users[0]?.readAt) return false;
+				break;
+			case Filters.READING_LIST:
+				if (!book.users[0]?.readNext) return false;
+				break;
+		}
 
-						case Filters.UNREAD:
-							if (book.users[0]?.readAt) return false;
-							break;
-						case Filters.READING_LIST:
-							if (book.users[0]?.readNext) return true;
-							break;
-					}
-
-					const matches = filterTerms.map<boolean>(term => {
-						return (
-							book.author?.name.toLowerCase().includes(term) ||
-							book.title.toLowerCase().includes(term) ||
-							book.series?.name.toLowerCase().includes(term) ||
-							false
-						);
-					});
-					return !matches.includes(false);
+		return filterTerms.length
+			? filterTerms.some(term => {
+					return (
+						book.author?.name.toLowerCase().includes(term) ||
+						book.title.toLowerCase().includes(term) ||
+						book.series?.name.toLowerCase().includes(term)
+					);
 			  })
-			: books;
-
+			: true;
+	});
 	const sortedBooks = sortBooks(filteredBooks, sort);
 
 	const gridClasses =

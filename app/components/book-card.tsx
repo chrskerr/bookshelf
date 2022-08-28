@@ -66,7 +66,6 @@ export default function BookCard({ book, refetch }: IProps) {
 				<p className="font-semibold">Have read:</p>
 				<p>
 					<input
-						className="scale-150"
 						type="checkbox"
 						defaultChecked={isRead}
 						onClick={markAsRead}
@@ -76,7 +75,6 @@ export default function BookCard({ book, refetch }: IProps) {
 				<p className="font-semibold">Reading list:</p>
 				<p>
 					<input
-						className="scale-150"
 						type="checkbox"
 						defaultChecked={isReadNext}
 						onClick={markAsReadNext}
