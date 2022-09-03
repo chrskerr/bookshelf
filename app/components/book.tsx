@@ -6,9 +6,10 @@ import type { IBook, Jsonify } from '~/utils/types';
 interface IProps {
 	book: Jsonify<IBook>;
 	refetch: () => void;
+	shouldShowUserColumns: boolean;
 }
 
-export default function Book({ book, refetch }: IProps) {
+export default function Book({ book, refetch, shouldShowUserColumns }: IProps) {
 	const isRead = !!book.users[0]?.readAt;
 	const isReadNext = !!book.users[0]?.readNext;
 
@@ -50,21 +51,24 @@ export default function Book({ book, refetch }: IProps) {
 			<p className="truncate">{book.author?.name ?? 'missing'}</p>
 			<p className="truncate">{book.series?.name ?? ''}</p>
 			<p>{book.series?.name ? book.bookNumber : 'n/a'}</p>
-			<p>{book.isOwned ? 'yes' : 'no'}</p>
-			<p>
-				<input
-					type="checkbox"
-					defaultChecked={isRead}
-					onClick={markAsRead}
-				/>
-			</p>
-			<p>
-				<input
-					type="checkbox"
-					defaultChecked={isReadNext}
-					onClick={markAsReadNext}
-				/>
-			</p>
+			{shouldShowUserColumns && (
+				<>
+					<p>
+						<input
+							type="checkbox"
+							defaultChecked={isRead}
+							onClick={markAsRead}
+						/>
+					</p>
+					<p>
+						<input
+							type="checkbox"
+							defaultChecked={isReadNext}
+							onClick={markAsReadNext}
+						/>
+					</p>
+				</>
+			)}
 			<p>
 				<Link to={`/edit/${book.id}`} className="link">
 					Edit

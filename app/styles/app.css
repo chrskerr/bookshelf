@@ -591,12 +591,24 @@ video {
   grid-template-columns: 2fr 1fr 2fr 1fr;
 }
 
-.grid-cols-\[repeat\(3\2c 4fr\)_repeat\(5\2c 1fr\)\] {
-  grid-template-columns: repeat(3,4fr) repeat(5,1fr);
+.grid-cols-\[repeat\(3\2c 4fr\)_repeat\(4\2c 1fr\)\] {
+  grid-template-columns: repeat(3,4fr) repeat(4,1fr);
 }
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-\[repeat\(3\2c 4fr\)_repeat\(2\2c 1fr\)\] {
+  grid-template-columns: repeat(3,4fr) repeat(2,1fr);
+}
+
+.grid-cols-\[repeat\(3\2c 2fr\)_repeat\(2\2c 1fr\)\] {
+  grid-template-columns: repeat(3,2fr) repeat(2,1fr);
 }
 
 .flex-col {
@@ -680,6 +692,10 @@ video {
   padding-bottom: 2rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -702,9 +718,17 @@ video {
   font-weight: 500;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .text-emerald-600 {
   --tw-text-opacity: 1;
   color: rgb(5 150 105 / var(--tw-text-opacity));
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .filter {
@@ -790,6 +814,15 @@ button.button.destructive:hover {
   color: rgb(5 150 105 / var(--tw-text-opacity));
 }
 
+.hover\:text-emerald-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(5 150 105 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
+}
+
 @media (min-width: 640px) {
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -819,6 +852,14 @@ button.button.destructive:hover {
 
   .md\:p-8 {
     padding: 2rem;
+  }
+
+  .md\:pb-0 {
+    padding-bottom: 0px;
+  }
+
+  .md\:pb-8 {
+    padding-bottom: 2rem;
   }
 }
 

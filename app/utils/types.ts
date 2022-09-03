@@ -3,7 +3,6 @@ export type Who = 'chris' | 'kate';
 export interface IBook {
 	id: string;
 	title: string;
-	isOwned: boolean;
 	bookNumber: number;
 	author: { id: string; name: string } | null;
 	users: Array<{

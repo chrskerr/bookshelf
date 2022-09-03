@@ -6,9 +6,14 @@ import type { IBook, Jsonify } from '~/utils/types';
 interface IProps {
 	book: Jsonify<IBook>;
 	refetch: () => void;
+	shouldShowUserColumns: boolean;
 }
 
-export default function BookCard({ book, refetch }: IProps) {
+export default function BookCard({
+	book,
+	refetch,
+	shouldShowUserColumns,
+}: IProps) {
 	const isRead = !!book.users[0]?.readAt;
 	const isReadNext = !!book.users[0]?.readNext;
 
@@ -56,31 +61,32 @@ export default function BookCard({ book, refetch }: IProps) {
 				<p className="font-semibold">Series:</p>
 				<p className="truncate">{book.series?.name ?? ''}</p>
 			</div>
-			<div className="grid grid-cols-[2fr_1fr_2fr_1fr] gap-1 mb-2">
-				<p className="font-semibold">Book #:</p>
-				<p>{book.series?.name ? book.bookNumber : 'n/a'}</p>
+			{shouldShowUserColumns && (
+				<>
+					<div className="grid grid-cols-[2fr_1fr_2fr_1fr] gap-1 mb-2">
+						<p className="font-semibold">Book #:</p>
+						<p>{book.series?.name ? book.bookNumber : 'n/a'}</p>
 
-				<p className="font-semibold">Owned:</p>
-				<p>{book.isOwned ? 'yes' : 'no'}</p>
+						<p className="font-semibold">Have read:</p>
+						<p>
+							<input
+								type="checkbox"
+								defaultChecked={isRead}
+								onClick={markAsRead}
+							/>
+						</p>
 
-				<p className="font-semibold">Have read:</p>
-				<p>
-					<input
-						type="checkbox"
-						defaultChecked={isRead}
-						onClick={markAsRead}
-					/>
-				</p>
-
-				<p className="font-semibold">Reading list:</p>
-				<p>
-					<input
-						type="checkbox"
-						defaultChecked={isReadNext}
-						onClick={markAsReadNext}
-					/>
-				</p>
-			</div>
+						<p className="font-semibold">Reading list:</p>
+						<p>
+							<input
+								type="checkbox"
+								defaultChecked={isReadNext}
+								onClick={markAsReadNext}
+							/>
+						</p>
+					</div>
+				</>
+			)}
 			<div>
 				<p>
 					<Link to={`/edit/${book.id}`} className="link">

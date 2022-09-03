@@ -7,12 +7,12 @@ import BookCard from './book-card';
 
 interface IProps {
 	loaderData: Jsonify<IBooksData>;
+	shouldShowUserColumns: boolean;
 	refetch: () => void;
 }
 
 enum Filters {
 	ALL = 'all',
-	NOT_OWNED = 'not-owned',
 	UNREAD = 'unread',
 	READ = 'read',
 	READING_LIST = 'reading-list',
@@ -20,7 +20,6 @@ enum Filters {
 
 enum Sorting {
 	READING_LIST = 'reading-list',
-	SERIES_THEN_AUTHOR = 'series-then-author',
 	AUTHOR = 'author',
 	TITLE = 'title',
 }
@@ -52,9 +51,6 @@ function sortBooks(books: IBook[], sort: Sorting): IBook[] {
 				return sortBySeries(a, b);
 			});
 
-		case Sorting.SERIES_THEN_AUTHOR:
-			return books.sort(sortBySeries);
-
 		case Sorting.AUTHOR:
 			return books.sort((a, b) => {
 				return a.author?.name.localeCompare(b.author?.name ?? '') ?? 0;
@@ -70,7 +66,11 @@ function sortBooks(books: IBook[], sort: Sorting): IBook[] {
 	}
 }
 
-export default function Books({ loaderData, refetch }: IProps) {
+export default function Books({
+	loaderData,
+	refetch,
+	shouldShowUserColumns,
+}: IProps) {
 	const { books } = loaderData;
 	const [terms, setTerms] = useState('');
 	const [filter, setFilter] = useState<Filters>(Filters.ALL);
@@ -84,9 +84,6 @@ export default function Books({ loaderData, refetch }: IProps) {
 	const filteredBooks = books.filter(book => {
 		switch (filter) {
 			case Filters.ALL:
-				break;
-			case Filters.NOT_OWNED:
-				if (book.isOwned) return false;
 				break;
 			case Filters.READ:
 				if (!book.users[0]?.readAt) return false;
@@ -111,8 +108,11 @@ export default function Books({ loaderData, refetch }: IProps) {
 	});
 	const sortedBooks = sortBooks(filteredBooks, sort);
 
-	const gridClasses =
-		'grid grid-cols-[repeat(3,4fr)_repeat(5,1fr)] w-full p-1 gap-x-2';
+	const gridClasses = `grid ${
+		shouldShowUserColumns
+			? 'grid-cols-[repeat(3,4fr)_repeat(4,1fr)]'
+			: 'grid-cols-[repeat(3,2fr)_repeat(2,1fr)]'
+	} w-full p-1 gap-x-2`;
 
 	return (
 		<div className="w-full">
@@ -134,7 +134,6 @@ export default function Books({ loaderData, refetch }: IProps) {
 						onChange={e => setFilter(e.target.value as Filters)}
 					>
 						<option value={Filters.ALL}>All books</option>
-						<option value={Filters.NOT_OWNED}>Not owned</option>
 						<option value={Filters.READING_LIST}>
 							Reading list
 						</option>
@@ -150,9 +149,6 @@ export default function Books({ loaderData, refetch }: IProps) {
 					>
 						<option value={Sorting.READING_LIST}>
 							Reading list
-						</option>
-						<option value={Sorting.SERIES_THEN_AUTHOR}>
-							Author &amp; Series
 						</option>
 						<option value={Sorting.AUTHOR}>Author</option>
 						<option value={Sorting.TITLE}>Title</option>
@@ -170,9 +166,12 @@ export default function Books({ loaderData, refetch }: IProps) {
 							<p className="w-[18%]">Author</p>
 							<p className="w-[18%]">Series</p>
 							<p className="w-[9%]">Book #</p>
-							<p className="w-[9%]">Owned</p>
-							<p className="w-[9%]">Have Read</p>
-							<p className="w-[9%]">Reading list</p>
+							{shouldShowUserColumns && (
+								<>
+									<p className="w-[9%]">Have Read</p>
+									<p className="w-[9%]">Reading list</p>
+								</>
+							)}
 							<p className="w-[9%]"></p>
 							<p />
 						</div>
@@ -183,7 +182,13 @@ export default function Books({ loaderData, refetch }: IProps) {
 									i % 2 === 0 ? 'bg-emerald-50' : ''
 								}`}
 							>
-								<Book book={book} refetch={refetch} />
+								<Book
+									book={book}
+									refetch={refetch}
+									shouldShowUserColumns={
+										shouldShowUserColumns
+									}
+								/>
 							</div>
 						))}
 					</div>
@@ -193,6 +198,7 @@ export default function Books({ loaderData, refetch }: IProps) {
 								key={book.id}
 								book={book}
 								refetch={refetch}
+								shouldShowUserColumns={shouldShowUserColumns}
 							/>
 						))}
 					</div>

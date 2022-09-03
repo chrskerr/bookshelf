@@ -46,7 +46,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 				},
 			},
 			where: {
-				isOwned: true,
+				isOwned: false,
 			},
 		}),
 	};
@@ -61,15 +61,15 @@ export default function Index() {
 
 	useEffect(() => {
 		setTimeout(() => {
-			fetcher.load('/?index');
+			fetcher.load('/wishlist');
 		}, 500);
 	}, [userId]);
 
 	return (
 		<Books
 			loaderData={fetcher.data ?? loaderData}
-			refetch={() => fetcher.load('/?index')}
-			shouldShowUserColumns
+			refetch={() => fetcher.load('/wishlist')}
+			shouldShowUserColumns={false}
 		/>
 	);
 }
