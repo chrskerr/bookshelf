@@ -65,7 +65,7 @@ export default function BookCard({
 				<>
 					<div className="grid grid-cols-[2fr_1fr_2fr_1fr] gap-1 mb-2">
 						<p className="font-semibold">Book #:</p>
-						<p>{book.series?.name ? book.bookNumber : 'n/a'}</p>
+						<p>{book.series?.name ? book.bookNumber : '-'}</p>
 
 						<p className="font-semibold">Have read:</p>
 						<p>

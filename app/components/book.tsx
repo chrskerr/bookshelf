@@ -50,7 +50,7 @@ export default function Book({ book, refetch, shouldShowUserColumns }: IProps) {
 			<p className="truncate">{book.title}</p>
 			<p className="truncate">{book.author?.name ?? 'missing'}</p>
 			<p className="truncate">{book.series?.name ?? ''}</p>
-			<p>{book.series?.name ? book.bookNumber : 'n/a'}</p>
+			<p>{book.series?.name ? book.bookNumber : '-'}</p>
 			{shouldShowUserColumns && (
 				<>
 					<p>
