@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { getUserCookie } from '~/utils/cookies.server';
 
 interface IProps {
-	book: Jsonify<IBook> | null;
+	book: Jsonify<IBook & { isOwned: boolean }> | null;
 	authorNames: string[];
 	seriesNames: string[];
 }

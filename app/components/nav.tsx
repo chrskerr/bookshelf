@@ -9,6 +9,7 @@ interface IProps {
 const linksMap: Array<{ href: `/${string}`; label: string }> = [
 	{ href: '/', label: 'Library' },
 	{ href: '/wishlist', label: 'Wishlist' },
+	{ href: '/stats', label: 'Stats' },
 	{ href: '/add', label: 'Add' },
 ];
 

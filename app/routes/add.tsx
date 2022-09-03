@@ -1,5 +1,4 @@
 import type { LoaderFunction } from '@remix-run/node';
-import type { Jsonify } from '~/utils/types';
 
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
@@ -23,7 +22,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 	const authors = await db.author.findMany({ include: { books: true } });
 	const series = await db.series.findMany({ include: { books: true } });
 
-	const fetchData: FetchData = {
+	const fetchData = {
 		authorNames: authors
 			.map(({ name, books }) => (books.length ? name : false))
 			.filter((name): name is string => typeof name === 'string'),
@@ -32,11 +31,11 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 			.filter((name): name is string => typeof name === 'string'),
 	};
 
-	return json(fetchData);
+	return json<FetchData>(fetchData);
 };
 
 export default function Add() {
-	const { authorNames, seriesNames } = useLoaderData<Jsonify<FetchData>>();
+	const { authorNames, seriesNames } = useLoaderData<FetchData>();
 	return (
 		<AddEditBook
 			book={null}

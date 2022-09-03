@@ -1,5 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node';
-import type { IBook, Jsonify } from '~/utils/types';
+import type { IBook } from '~/utils/types';
 
 import { useFetcher, useLoaderData, useOutletContext } from '@remix-run/react';
 import Books from '~/components/books';
@@ -23,7 +23,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 		return json(emptyData);
 	}
 
-	const data: IBooksData = {
+	const data = {
 		books: await db.book.findMany({
 			select: {
 				id: true,
@@ -51,12 +51,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 		}),
 	};
 
-	return json(data);
+	return json<IBooksData>(data);
 };
 
 export default function Index() {
-	const loaderData = useLoaderData<Jsonify<IBooksData>>();
-	const fetcher = useFetcher<Jsonify<IBooksData>>();
+	const loaderData = useLoaderData<IBooksData>();
+	const fetcher = useFetcher();
 	const { userId } = useOutletContext<UserData>();
 
 	useEffect(() => {

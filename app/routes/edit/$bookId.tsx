@@ -1,5 +1,5 @@
 import type { LoaderFunction } from '@remix-run/node';
-import type { IBook, Jsonify } from '~/utils/types';
+import type { IBook } from '~/utils/types';
 
 import { json, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
@@ -9,7 +9,7 @@ import { getUserCookie } from '~/utils/cookies.server';
 import AddEditBook from '~/components/add-edit';
 
 type FetchData = {
-	book: IBook;
+	book: IBook & { isOwned: boolean };
 	authorNames: string[];
 	seriesNames: string[];
 };
@@ -23,7 +23,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 		return undefined;
 	}
 
-	const book: IBook | null = await db.book.findFirst({
+	const book = await db.book.findFirst({
 		where: { id: bookId },
 		select: {
 			id: true,
@@ -54,7 +54,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 	const authors = await db.author.findMany({ include: { books: true } });
 	const series = await db.series.findMany({ include: { books: true } });
 
-	const fetchData: FetchData = {
+	const fetchData = {
 		book,
 		authorNames: authors
 			.map(({ name, books }) => (books.length ? name : false))
@@ -64,12 +64,11 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 			.filter((name): name is string => typeof name === 'string'),
 	};
 
-	return json(fetchData);
+	return json<FetchData>(fetchData);
 };
 
 export default function Update() {
-	const { book, authorNames, seriesNames } =
-		useLoaderData<Jsonify<FetchData>>();
+	const { book, authorNames, seriesNames } = useLoaderData<FetchData>();
 	return (
 		<AddEditBook
 			book={book}
