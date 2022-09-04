@@ -22,6 +22,7 @@ enum Sorting {
 	READING_LIST = 'reading-list',
 	AUTHOR = 'author',
 	TITLE = 'title',
+	ADDED_AT = 'added-at',
 }
 
 type IBook = IProps['loaderData']['books'][0];
@@ -61,8 +62,10 @@ function sortBooks(books: IBook[], sort: Sorting): IBook[] {
 				return a.title.localeCompare(b.title);
 			});
 
-		default:
-			return books;
+		case Sorting.ADDED_AT:
+			return books.sort((a, b) => {
+				return b.createdAt.localeCompare(a.createdAt);
+			});
 	}
 }
 
@@ -152,6 +155,7 @@ export default function Books({
 						</option>
 						<option value={Sorting.AUTHOR}>Author</option>
 						<option value={Sorting.TITLE}>Title</option>
+						<option value={Sorting.ADDED_AT}>Date added</option>
 					</select>
 				</label>
 			</div>

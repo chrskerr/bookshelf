@@ -4,6 +4,7 @@ export interface IBook {
 	id: string;
 	title: string;
 	bookNumber: number;
+	createdAt: Date;
 	author: { id: string; name: string } | null;
 	users: Array<{
 		userId: string;
