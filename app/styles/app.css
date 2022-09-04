@@ -580,10 +580,6 @@ video {
   max-width: 36rem;
 }
 
-.max-w-4xl {
-  max-width: 56rem;
-}
-
 .grid-flow-row {
   grid-auto-flow: row;
 }
@@ -638,10 +634,6 @@ video {
 
 .gap-1 {
   gap: 0.25rem;
-}
-
-.gap-2 {
-  gap: 0.5rem;
 }
 
 .gap-x-2 {
@@ -719,25 +711,12 @@ video {
   line-height: 1.75rem;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .font-semibold {
   font-weight: 600;
 }
 
 .font-medium {
   font-weight: 500;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.font-normal {
-  font-weight: 400;
 }
 
 .uppercase {
@@ -885,10 +864,6 @@ button.button.destructive:hover {
   }
 }
 
-.\[\&\>\*\]\:border>* {
-  border-width: 1px;
-}
-
 .\[\&\>\*\]\:border-y>* {
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -898,20 +873,12 @@ button.button.destructive:hover {
   padding: 0.25rem;
 }
 
-.\[\&\>\*\:nth-of-type\(3\)\]\:border-l>*:nth-of-type(3) {
-  border-left-width: 1px;
-}
-
 .\[\&\>\*\:nth-of-type\(3n\+1\)\]\:border-l>*:nth-of-type(3n+1) {
   border-left-width: 1px;
 }
 
 .\[\&\>\*\:nth-of-type\(3n\+1\)\]\:pl-2>*:nth-of-type(3n+1) {
   padding-left: 0.5rem;
-}
-
-.\[\&\>\*\:nth-of-type\(3n\+1\)\]\:font-semibold>*:nth-of-type(3n+1) {
-  font-weight: 600;
 }
 
 .\[\&\>\*\:nth-of-type\(3n\)\]\:border-r>*:nth-of-type(3n) {

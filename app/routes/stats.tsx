@@ -54,10 +54,10 @@ export default function Index() {
 	const totalWishlistBooks = books.filter(({ isOwned }) => !isOwned).length;
 
 	const readByKate = books.filter(
-		({ users }) => users.find(user => (user.userId = 'kate'))?.readAt,
+		({ users }) => users.find(user => user.userId === 'kate')?.readAt,
 	).length;
 	const readByChris = books.filter(
-		({ users }) => users.find(user => (user.userId = 'chris'))?.readAt,
+		({ users }) => users.find(user => user.userId === 'chris')?.readAt,
 	).length;
 
 	return (
