@@ -13,7 +13,7 @@ export interface IBooksData {
 export const loader: LoaderFunction = async ({ request }) => {
 	const userData = await getUserCookie(request);
 
-	if (!userData?.userId || !userData.isAuthenticated) {
+	if (!userData.isAuthenticated) {
 		const emptyData: IBooksData = {
 			books: [],
 		};
@@ -52,7 +52,7 @@ export default function Index() {
 	const { books } = useLoaderData<IBooksData>();
 
 	const totalOwnedBooks = books.filter(({ isOwned }) => isOwned).length;
-	const totalWishlistBooks = books.filter(({ isOwned }) => !isOwned).length;
+	const totalWishlistBooks = books.length - totalOwnedBooks;
 
 	const readByKate = books.filter(
 		({ users }) => users.find(user => user.userId === 'kate')?.readAt,
@@ -62,26 +62,37 @@ export default function Index() {
 	).length;
 
 	return (
-		<div className="grid grid-cols-3 gap-y-2 mx-auto [&>*]:border-y [&>*]:p-1 [&>*:nth-of-type(3n+1)]:border-l [&>*:nth-of-type(3n+1)]:pl-2 [&>*:nth-of-type(3n)]:border-r [&>*:nth-of-type(3n)]:pr-2">
-			<p className="uppercase">Category</p>
-			<p className="uppercase">Count</p>
-			<p className="uppercase">Percent</p>
+		<div>
+			<h2 className="mb-4 text-xl">Book stats:</h2>
+			<div className="grid grid-cols-3 gap-y-2 mx-auto [&>*]:border-y [&>*]:p-1 [&>*:nth-of-type(3n+1)]:border-l [&>*:nth-of-type(3n+1)]:pl-2 [&>*:nth-of-type(3n)]:border-r [&>*:nth-of-type(3n)]:pr-2">
+				<p>Total owned:</p>
+				<p>{totalOwnedBooks}</p>
+				<p>
+					{((totalOwnedBooks / books.length) * 100).toFixed(1)}% of
+					all books
+				</p>
 
-			<p>Total books:</p>
-			<p>{totalOwnedBooks}</p>
-			<p></p>
+				<p>Total wishlist:</p>
+				<p>{totalWishlistBooks}</p>
+				<p>
+					{((totalWishlistBooks / books.length) * 100).toFixed(1)}% of
+					all books
+				</p>
 
-			<p>Total wishlist:</p>
-			<p>{totalWishlistBooks}</p>
-			<p></p>
+				<p>Read by Kate:</p>
+				<p>{readByKate}</p>
+				<p>
+					{((readByKate / totalOwnedBooks) * 100).toFixed(1)}% of
+					owned
+				</p>
 
-			<p>Read by Kate:</p>
-			<p>{readByKate}</p>
-			<p>{((readByKate / totalOwnedBooks) * 100).toFixed(1)}%</p>
-
-			<p>Read by Chris:</p>
-			<p>{readByChris}</p>
-			<p>{((readByChris / totalOwnedBooks) * 100).toFixed(1)}%</p>
+				<p>Read by Chris:</p>
+				<p>{readByChris}</p>
+				<p>
+					{((readByChris / totalOwnedBooks) * 100).toFixed(1)}% of
+					owned
+				</p>
+			</div>
 		</div>
 	);
 }
