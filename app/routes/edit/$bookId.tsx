@@ -30,9 +30,11 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 			title: true,
 			isOwned: true,
 			bookNumber: true,
+			createdAt: true,
 			users: {
 				where: { userId },
 				select: {
+					userId: true,
 					readAt: true,
 					readNext: true,
 				},

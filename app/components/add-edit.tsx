@@ -81,6 +81,14 @@ export default function AddEditBook({
 	const [author, setAuthor] = useState<string>(book?.author?.name || '');
 	const [series, setSeries] = useState<string>(book?.series?.name || '');
 
+	async function handleDelete() {
+		if (!book) return;
+		await fetch(`/api/delete/${book.id}`, {
+			method: 'post',
+			credentials: 'include',
+		});
+	}
+
 	return (
 		<div className="add-edit">
 			<Form method="post">
@@ -161,9 +169,17 @@ export default function AddEditBook({
 								? 'Saving...'
 								: 'Save'}
 						</button>
-						<button className="button destructive">
+						<button className="button neutral">
 							<Link to="/">Cancel</Link>
 						</button>
+						{book && (
+							<button
+								className="ml-auto button destructive"
+								onClick={handleDelete}
+							>
+								Delete
+							</button>
+						)}
 					</div>
 				</fieldset>
 			</Form>
