@@ -38,10 +38,10 @@ model Book {
     isOwned    Boolean
     bookNumber Int     @default(1)
 
-    series   Series? @relation(fields: [seriesId], references: [id])
+    series   Series? @relation(fields: [seriesId], references: [id], onDelete: SetNull)
     seriesId String?
 
-    author   Author? @relation(fields: [authorId], references: [id])
+    author   Author? @relation(fields: [authorId], references: [id], onDelete: SetNull)
     authorId String?
 
     users UsersBooks[]
@@ -59,10 +59,10 @@ model User {
 }
 
 model UsersBooks {
-    user   User   @relation(fields: [userId], references: [id])
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId String
 
-    book   Book   @relation(fields: [bookId], references: [id])
+    book   Book   @relation(fields: [bookId], references: [id], onDelete: Cascade)
     bookId String
 
     readAt   DateTime?

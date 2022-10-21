@@ -1,7 +1,7 @@
 import type { IBook, Jsonify } from '~/utils/types';
 import type { ActionFunction } from '@remix-run/node';
 
-import { Form, Link, useTransition } from '@remix-run/react';
+import { Form, Link, useTransition, useNavigate } from '@remix-run/react';
 
 import { redirect } from '@remix-run/node';
 import { db } from '~/utils/db.server';
@@ -77,16 +77,18 @@ export default function AddEditBook({
 	seriesNames,
 }: IProps) {
 	const transition = useTransition();
+	const navigate = useNavigate();
 
 	const [author, setAuthor] = useState<string>(book?.author?.name || '');
 	const [series, setSeries] = useState<string>(book?.series?.name || '');
 
-	async function handleDelete() {
+	async function handleDelete(e: MouseEvent) {
 		if (!book) return;
 		await fetch(`/api/delete/${book.id}`, {
 			method: 'post',
 			credentials: 'include',
 		});
+		navigate('/');
 	}
 
 	return (
@@ -169,11 +171,12 @@ export default function AddEditBook({
 								? 'Saving...'
 								: 'Save'}
 						</button>
-						<button className="button neutral">
+						<button type="button" className="button neutral">
 							<Link to="/">Cancel</Link>
 						</button>
 						{book && (
 							<button
+								type="button"
 								className="ml-auto button destructive"
 								onClick={handleDelete}
 							>

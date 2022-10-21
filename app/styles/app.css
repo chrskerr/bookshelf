@@ -521,6 +521,10 @@ video {
   margin-right: 1rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -535,10 +539,6 @@ video {
 
 .ml-2 {
   margin-left: 0.5rem;
-}
-
-.ml-auto {
-  margin-left: auto;
 }
 
 .inline-block {
@@ -647,10 +647,6 @@ video {
 
 .gap-y-2 {
   row-gap: 0.5rem;
-}
-
-.justify-self-end {
-  justify-self: end;
 }
 
 .truncate {
