@@ -9,7 +9,7 @@ export interface IBook {
 	users: Array<{
 		userId: string;
 		readAt: Date | null;
-		readNext: boolean;
+		addedToReadingListAt: Date | null;
 	}>;
 	series: {
 		name: string;

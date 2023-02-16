@@ -20,6 +20,7 @@ enum Filters {
 
 enum Sorting {
 	READING_LIST = 'reading-list',
+	READING_LIST_OLDEST = 'reading-list-oldest',
 	AUTHOR = 'author',
 	TITLE = 'title',
 	ADDED_AT = 'added-at',
@@ -43,8 +44,23 @@ function sortBooks(books: IBook[], sort: Sorting): IBook[] {
 	switch (sort) {
 		case Sorting.READING_LIST:
 			return books.sort((a, b) => {
-				const aReadNext = !!a.users[0]?.readNext;
-				const bReadNext = !!b.users[0]?.readNext;
+				const aReadNext = a.users[0]?.addedToReadingListAt;
+				const bReadNext = b.users[0]?.addedToReadingListAt;
+
+				if (aReadNext && !bReadNext) return -1;
+				if (bReadNext && !aReadNext) return 1;
+
+				return sortBySeries(a, b);
+			});
+
+		case Sorting.READING_LIST_OLDEST:
+			return books.sort((a, b) => {
+				const aReadNext = a.users[0]?.addedToReadingListAt;
+				const bReadNext = b.users[0]?.addedToReadingListAt;
+
+				if (aReadNext && bReadNext) {
+					return aReadNext.localeCompare(bReadNext);
+				}
 
 				if (aReadNext && !bReadNext) return -1;
 				if (bReadNext && !aReadNext) return 1;
@@ -95,7 +111,7 @@ export default function Books({
 				if (book.users[0]?.readAt) return false;
 				break;
 			case Filters.READING_LIST:
-				if (!book.users[0]?.readNext) return false;
+				if (!book.users[0]?.addedToReadingListAt) return false;
 				break;
 		}
 
@@ -152,6 +168,9 @@ export default function Books({
 					>
 						<option value={Sorting.READING_LIST}>
 							Reading list
+						</option>
+						<option value={Sorting.READING_LIST_OLDEST}>
+							Longest on reading list
 						</option>
 						<option value={Sorting.AUTHOR}>Author</option>
 						<option value={Sorting.TITLE}>Title</option>

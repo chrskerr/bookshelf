@@ -32,7 +32,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 					select: {
 						userId: true,
 						readAt: true,
-						readNext: true,
+						addedToReadingListAt: true,
 					},
 				},
 				author: { select: { id: true, name: true } },

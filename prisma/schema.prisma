@@ -65,8 +65,9 @@ model UsersBooks {
     book   Book   @relation(fields: [bookId], references: [id], onDelete: Cascade)
     bookId String
 
-    readAt   DateTime?
-    readNext Boolean   @default(false)
+    readAt               DateTime?
+    readNext             Boolean   @default(false)
+    addedToReadingListAt DateTime?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

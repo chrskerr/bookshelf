@@ -15,7 +15,7 @@ export default function BookCard({
 	shouldShowUserColumns,
 }: IProps) {
 	const isRead = !!book.users[0]?.readAt;
-	const isReadNext = !!book.users[0]?.readNext;
+	const isReadNext = !!book.users[0]?.addedToReadingListAt;
 
 	async function markAsRead() {
 		const body: IMarkBookRead = {

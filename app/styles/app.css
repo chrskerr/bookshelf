@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.2.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.6 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -30,6 +30,7 @@
 2. Prevent adjustments of font size after orientation changes in iOS.
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
 */
 
 html {
@@ -42,6 +43,8 @@ html {
   /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
 }
 
 /*
@@ -509,34 +512,22 @@ video {
   top: 0px;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
-.mt-4 {
+.my-4 {
   margin-top: 1rem;
-}
-
-.mr-4 {
-  margin-right: 1rem;
-}
-
-.ml-auto {
-  margin-left: auto;
-}
-
-.mb-4 {
   margin-bottom: 1rem;
 }
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .mb-8 {
@@ -545,6 +536,18 @@ video {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .inline-block {
@@ -571,20 +574,20 @@ video {
   min-height: 100vh;
 }
 
-.w-full {
-  width: 100%;
+.w-\[18\%\] {
+  width: 18%;
 }
 
 .w-\[19\%\] {
   width: 19%;
 }
 
-.w-\[18\%\] {
-  width: 18%;
-}
-
 .w-\[9\%\] {
   width: 9%;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .max-w-xl {
@@ -599,6 +602,14 @@ video {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .grid-cols-\[1fr_2fr\] {
   grid-template-columns: 1fr 2fr;
 }
@@ -607,20 +618,12 @@ video {
   grid-template-columns: 2fr 1fr 2fr 1fr;
 }
 
-.grid-cols-\[repeat\(3\2c 4fr\)_repeat\(4\2c 1fr\)\] {
-  grid-template-columns: repeat(3,4fr) repeat(4,1fr);
-}
-
 .grid-cols-\[repeat\(3\2c 2fr\)_repeat\(2\2c 1fr\)\] {
   grid-template-columns: repeat(3,2fr) repeat(2,1fr);
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.grid-cols-\[repeat\(3\2c 4fr\)_repeat\(4\2c 1fr\)\] {
+  grid-template-columns: repeat(3,4fr) repeat(4,1fr);
 }
 
 .flex-col {
@@ -639,12 +642,12 @@ video {
   justify-items: start;
 }
 
-.gap-4 {
-  gap: 1rem;
-}
-
 .gap-1 {
   gap: 0.25rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .gap-x-2 {
@@ -678,34 +681,34 @@ video {
   border-bottom-color: rgb(5 150 105 / var(--tw-border-opacity));
 }
 
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .bg-emerald-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(236 253 245 / var(--tw-bg-opacity));
 }
 
-.p-4 {
-  padding: 1rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-1 {
   padding: 0.25rem;
 }
 
-.pb-4 {
-  padding-bottom: 1rem;
+.p-3 {
+  padding: 0.75rem;
+}
+
+.p-4 {
+  padding: 1rem;
 }
 
 .pb-2 {
   padding-bottom: 0.5rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
 }
 
 .text-left {
@@ -722,12 +725,12 @@ video {
   line-height: 1.75rem;
 }
 
-.font-semibold {
-  font-weight: 600;
-}
-
 .font-medium {
   font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .text-emerald-600 {
@@ -744,9 +747,9 @@ video {
 }
 
 .transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -828,7 +831,7 @@ button.button.destructive:hover {
 .link {
   cursor: pointer;
   text-decoration-line: underline;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -878,22 +881,21 @@ button.button.destructive:hover {
     padding: 2rem;
   }
 
-  .md\:pb-8 {
-    padding-bottom: 2rem;
-  }
-
   .md\:pb-0 {
     padding-bottom: 0px;
   }
+
+  .md\:pb-8 {
+    padding-bottom: 2rem;
+  }
 }
 
-.\[\&\>\*\]\:border-y>* {
-  border-top-width: 1px;
-  border-bottom-width: 1px;
+.\[\&\>\*\:nth-of-type\(3n\)\]\:border-r>*:nth-of-type(3n) {
+  border-right-width: 1px;
 }
 
-.\[\&\>\*\]\:p-1>* {
-  padding: 0.25rem;
+.\[\&\>\*\:nth-of-type\(3n\)\]\:pr-2>*:nth-of-type(3n) {
+  padding-right: 0.5rem;
 }
 
 .\[\&\>\*\:nth-of-type\(3n\+1\)\]\:border-l>*:nth-of-type(3n+1) {
@@ -904,10 +906,11 @@ button.button.destructive:hover {
   padding-left: 0.5rem;
 }
 
-.\[\&\>\*\:nth-of-type\(3n\)\]\:border-r>*:nth-of-type(3n) {
-  border-right-width: 1px;
+.\[\&\>\*\]\:border-y>* {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
 }
 
-.\[\&\>\*\:nth-of-type\(3n\)\]\:pr-2>*:nth-of-type(3n) {
-  padding-right: 0.5rem;
+.\[\&\>\*\]\:p-1>* {
+  padding: 0.25rem;
 }

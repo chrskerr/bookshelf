@@ -22,8 +22,12 @@ export const action: ActionFunction = async ({ request }) => {
 
 	await db.usersBooks.upsert({
 		where: { userId_bookId: { bookId, userId } },
-		update: { readNext: body.isReadNext },
-		create: { userId, bookId, readNext: body.isReadNext },
+		update: { addedToReadingListAt: body.isReadNext ? new Date() : null },
+		create: {
+			userId,
+			bookId,
+			addedToReadingListAt: body.isReadNext ? new Date() : null,
+		},
 	});
 
 	return new Response(undefined, { status: 200 });
