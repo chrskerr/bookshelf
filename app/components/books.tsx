@@ -95,10 +95,7 @@ export default function Books({
 	const [filter, setFilter] = useState<Filters>(Filters.ALL);
 	const [sort, setSort] = useState<Sorting>(Sorting.READING_LIST);
 
-	const filterTerms = terms
-		.split(' ')
-		.map(term => term.toLowerCase())
-		.filter(Boolean);
+	const filterTerms = terms.toLowerCase().trim();
 
 	const filteredBooks = books.filter(book => {
 		switch (filter) {
@@ -115,14 +112,10 @@ export default function Books({
 				break;
 		}
 
-		return filterTerms.length
-			? filterTerms.some(term => {
-					return (
-						book.author?.name.toLowerCase().includes(term) ||
-						book.title.toLowerCase().includes(term) ||
-						book.series?.name.toLowerCase().includes(term)
-					);
-			  })
+		return filterTerms
+			? book.author?.name.toLowerCase().includes(filterTerms) ||
+					book.title.toLowerCase().includes(filterTerms) ||
+					book.series?.name.toLowerCase().includes(filterTerms)
 			: true;
 	});
 	const sortedBooks = sortBooks(filteredBooks, sort);
