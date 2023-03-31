@@ -683,6 +683,11 @@ video {
   border-bottom-width: 2px;
 }
 
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
 .border-b-emerald-600 {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(5 150 105 / var(--tw-border-opacity));
@@ -708,6 +713,16 @@ video {
 
 .p-4 {
   padding: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .pb-2 {

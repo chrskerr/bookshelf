@@ -121,7 +121,7 @@ export default function Book({
 			<p className="pt-1">
 				Loaned to:{' '}
 				<input
-					className="ml-4"
+					className="ml-4 border border-black"
 					value={loanedTo}
 					onChange={handleLoanedToChange}
 				/>

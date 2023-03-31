@@ -1,4 +1,8 @@
 import { Link } from '@remix-run/react';
+import debounce from 'lodash/debounce';
+import type { ChangeEvent } from 'react';
+import { useCallback, useState } from 'react';
+import type { IMarkBookLoaned } from '~/routes/api/mark-book-loaned';
 import type { IMarkBookRead } from '~/routes/api/mark-book-read';
 import type { IMarkBookReadNext } from '~/routes/api/mark-book-read-next';
 import type { IBook, Jsonify } from '~/utils/types';
@@ -16,6 +20,8 @@ export default function BookCard({
 }: IProps) {
 	const isRead = !!book.users[0]?.readAt;
 	const isReadNext = !!book.users[0]?.addedToReadingListAt;
+
+	const [loanedTo, setLoanedTo] = useState(book.loanedTo ?? '');
 
 	async function markAsRead() {
 		const body: IMarkBookRead = {
@@ -48,6 +54,34 @@ export default function BookCard({
 			refetch();
 		}
 	}
+
+	const handleLoanedToSave = useCallback(
+		debounce(async (newValue: string) => {
+			const body: IMarkBookLoaned = {
+				bookId: book.id,
+				loanedTo: newValue,
+			};
+			const res = await fetch('/api/mark-book-loaned', {
+				method: 'post',
+				credentials: 'include',
+				body: JSON.stringify(body),
+			});
+
+			if (res.ok) {
+				refetch();
+			}
+		}, 500),
+		[],
+	);
+
+	const handleLoanedToChange = useCallback(
+		(e: ChangeEvent & { currentTarget: HTMLInputElement }) => {
+			const newValue = e.currentTarget.value;
+			setLoanedTo(newValue);
+			handleLoanedToSave(newValue);
+		},
+		[],
+	);
 
 	return (
 		<div className="p-3 mb-4 bg-white border rounded-lg">
@@ -87,6 +121,14 @@ export default function BookCard({
 					</div>
 				</>
 			)}
+			<p className="py-2">
+				Loaned to:{' '}
+				<input
+					className="ml-4 border border-black"
+					value={loanedTo}
+					onChange={handleLoanedToChange}
+				/>
+			</p>
 			<div>
 				<p>
 					<Link to={`/edit/${book.id}`} className="link">
