@@ -14,6 +14,7 @@ export interface IBook {
 	series: {
 		name: string;
 	} | null;
+	loanedTo: string | null;
 }
 
 export type Jsonify<T> = T extends { toJSON(): infer U }

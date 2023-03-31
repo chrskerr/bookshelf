@@ -45,6 +45,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 						name: true,
 					},
 				},
+				loanedTo: true,
 			},
 			where: {
 				isOwned: true,

@@ -124,7 +124,7 @@ export default function Books({
 		shouldShowUserColumns
 			? 'grid-cols-[repeat(3,4fr)_repeat(4,1fr)]'
 			: 'grid-cols-[repeat(3,2fr)_repeat(2,1fr)]'
-	} w-full p-1 gap-x-2`;
+	}`;
 
 	return (
 		<div className="w-full">
@@ -176,7 +176,7 @@ export default function Books({
 				<>
 					<div className="hidden md:block">
 						<div
-							className={`${gridClasses} sticky top-0 pb-4 font-medium text-left bg-white`}
+							className={`${gridClasses} w-full p-1 gap-x-2 sticky top-0 pb-4 font-medium text-left bg-white`}
 						>
 							<p className="w-[19%]">Title</p>
 							<p className="w-[18%]">Author</p>
@@ -194,7 +194,7 @@ export default function Books({
 						{sortedBooks.map((book, i) => (
 							<div
 								key={book.id}
-								className={`${gridClasses} ${
+								className={`${
 									i % 2 === 0 ? 'bg-emerald-50' : ''
 								}`}
 							>
@@ -204,6 +204,7 @@ export default function Books({
 									shouldShowUserColumns={
 										shouldShowUserColumns
 									}
+									gridClasses={gridClasses}
 								/>
 							</div>
 						))}
