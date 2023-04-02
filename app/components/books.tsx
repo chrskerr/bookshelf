@@ -16,6 +16,7 @@ enum Filters {
 	UNREAD = 'unread',
 	READ = 'read',
 	READING_LIST = 'reading-list',
+	LOANED = 'loaned',
 }
 
 enum Sorting {
@@ -110,6 +111,9 @@ export default function Books({
 			case Filters.READING_LIST:
 				if (!book.users[0]?.addedToReadingListAt) return false;
 				break;
+			case Filters.LOANED:
+				if (!book.loanedTo) return false;
+				break;
 		}
 
 		return filterTerms
@@ -151,6 +155,7 @@ export default function Books({
 						</option>
 						<option value={Filters.READ}>Read</option>
 						<option value={Filters.UNREAD}>Unread</option>
+						<option value={Filters.LOANED}>On loan</option>
 					</select>
 				</label>
 				<label className="my-4 label">

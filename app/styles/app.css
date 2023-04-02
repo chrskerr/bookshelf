@@ -507,6 +507,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.relative {
+  position: relative;
+}
+
 .sticky {
   position: sticky;
 }
@@ -569,6 +573,10 @@ video {
   display: grid;
 }
 
+.inline-grid {
+  display: inline-grid;
+}
+
 .hidden {
   display: none;
 }
@@ -595,6 +603,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[calc\(100\%-1rem\)\] {
+  width: calc(100% - 1rem);
 }
 
 .max-w-xl {
@@ -631,6 +643,22 @@ video {
 
 .grid-cols-\[repeat\(3\2c 4fr\)_repeat\(4\2c 1fr\)\] {
   grid-template-columns: repeat(3,4fr) repeat(4,1fr);
+}
+
+.grid-cols-\[10px_repeat\(3\2c 2fr\)_repeat\(2\2c 1fr\)\] {
+  grid-template-columns: 10px repeat(3,2fr) repeat(2,1fr);
+}
+
+.grid-cols-\[10px_repeat\(3\2c 4fr\)_repeat\(4\2c 1fr\)\] {
+  grid-template-columns: 10px repeat(3,4fr) repeat(4,1fr);
+}
+
+.grid-cols-\[15px_repeat\(3\2c 2fr\)_repeat\(2\2c 1fr\)\] {
+  grid-template-columns: 15px repeat(3,2fr) repeat(2,1fr);
+}
+
+.grid-cols-\[15px_repeat\(3\2c 4fr\)_repeat\(4\2c 1fr\)\] {
+  grid-template-columns: 15px repeat(3,4fr) repeat(4,1fr);
 }
 
 .flex-col {
@@ -914,6 +942,84 @@ button.button.destructive:hover {
   .md\:pb-8 {
     padding-bottom: 2rem;
   }
+}
+
+.\[\&\:\:-webkit-details-marker\]\:absolute::-webkit-details-marker {
+  position: absolute;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:inset-0::-webkit-details-marker {
+  inset: 0px;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-\[-1rem\]::-webkit-details-marker {
+  left: -1rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:right-1::-webkit-details-marker {
+  right: 0.25rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-1::-webkit-details-marker {
+  left: 0.25rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-2::-webkit-details-marker {
+  left: 0.5rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-\[0\.25rem\]::-webkit-details-marker {
+  left: 0.25rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-\[0\.5rem\]::-webkit-details-marker {
+  left: 0.5rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-\[1rem\]::-webkit-details-marker {
+  left: 1rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:top-\[1rem\]::-webkit-details-marker {
+  top: 1rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-\[-0\.5rem\]::-webkit-details-marker {
+  left: -0.5rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:top-\[0\.25rem\]::-webkit-details-marker {
+  top: 0.25rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:top-\[0\.5rem\]::-webkit-details-marker {
+  top: 0.5rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:left-\[-1\.25rem\]::-webkit-details-marker {
+  left: -1.25rem;
+}
+
+.\[\&\:\:-webkit-details-marker\]\:text-red-500::-webkit-details-marker {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.\[\&\:\:marker\]\:absolute::marker {
+  position: absolute;
+}
+
+.\[\&\:\:marker\]\:left-\[-1\.25rem\]::marker {
+  left: -1.25rem;
+}
+
+.\[\&\:\:marker\]\:top-\[0\.5rem\]::marker {
+  top: 0.5rem;
+}
+
+.\[\&\:\:marker\]\:text-red-50::marker {
+  --tw-text-opacity: 1;
+  color: rgb(254 242 242 / var(--tw-text-opacity));
 }
 
 .\[\&\>\*\:nth-of-type\(3n\)\]\:border-r>*:nth-of-type(3n) {

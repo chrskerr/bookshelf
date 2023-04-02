@@ -88,36 +88,38 @@ export default function Book({
 	);
 
 	return (
-		<div className="p-1">
-			<div className={`${gridClasses} w-full gap-x-2`}>
-				<p className="truncate">{book.title}</p>
-				<p className="truncate">{book.author?.name ?? 'missing'}</p>
-				<p className="truncate">{book.series?.name ?? ''}</p>
-				<p>{book.series?.name ? book.bookNumber : '-'}</p>
-				{shouldShowUserColumns && (
-					<>
-						<p>
-							<input
-								type="checkbox"
-								defaultChecked={isRead}
-								onClick={markAsRead}
-							/>
-						</p>
-						<p>
-							<input
-								type="checkbox"
-								defaultChecked={isReadNext}
-								onClick={markAsReadNext}
-							/>
-						</p>
-					</>
-				)}
-				<p>
-					<Link to={`/edit/${book.id}`} className="link">
-						Edit
-					</Link>
-				</p>
-			</div>
+		<details className="p-1">
+			<summary className="relative [&::-webkit-details-marker]:absolute [&::-webkit-details-marker]:left-[-1.25rem] [&::-webkit-details-marker]:top-[0.5rem] [&::marker]:absolute [&::marker]:left-[-1.25rem] [&::marker]:top-[0.5rem]">
+				<div className={`${gridClasses} w-full gap-x-2`}>
+					<p className="truncate">{book.title}</p>
+					<p className="truncate">{book.author?.name ?? 'missing'}</p>
+					<p className="truncate">{book.series?.name ?? ''}</p>
+					<p>{book.series?.name ? book.bookNumber : '-'}</p>
+					{shouldShowUserColumns && (
+						<>
+							<p>
+								<input
+									type="checkbox"
+									defaultChecked={isRead}
+									onClick={markAsRead}
+								/>
+							</p>
+							<p>
+								<input
+									type="checkbox"
+									defaultChecked={isReadNext}
+									onClick={markAsReadNext}
+								/>
+							</p>
+						</>
+					)}
+					<p>
+						<Link to={`/edit/${book.id}`} className="link">
+							Edit
+						</Link>
+					</p>
+				</div>
+			</summary>
 			<p className="pt-1">
 				Loaned to:{' '}
 				<input
@@ -126,6 +128,6 @@ export default function Book({
 					onChange={handleLoanedToChange}
 				/>
 			</p>
-		</div>
+		</details>
 	);
 }
